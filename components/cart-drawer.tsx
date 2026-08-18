@@ -57,11 +57,11 @@ export function CartDrawer() {
           <p className="font-mono text-[11px] tracking-[0.12em] uppercase text-muted-foreground">
             {remainingForFreeDelivery > 0 ? (
               <>
-                Add{' '}
+                You&apos;re{' '}
                 <span className="font-bold text-foreground">
                   ${remainingForFreeDelivery.toFixed(2)}
                 </span>{' '}
-                for free local delivery
+                away from free local delivery — flat rate ${FLAT_RATE_DELIVERY.toFixed(2)} until then
               </>
             ) : (
               <span className="font-bold text-foreground">

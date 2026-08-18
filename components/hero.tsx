@@ -15,29 +15,30 @@ export function Hero() {
   }, [])
 
   return (
-    <section id="top" className="relative isolate min-h-[88vh] overflow-hidden bg-foreground text-background">
+    <section id="top" className="relative isolate min-h-[88vh] overflow-hidden bg-background text-foreground">
       {/* Background video placeholder — drop a src on the <video> when ready */}
       <video
-        className="absolute inset-0 -z-10 h-full w-full object-cover opacity-40"
+        className="absolute inset-0 -z-10 h-full w-full object-cover opacity-20"
         autoPlay
         muted
         loop
         playsInline
         poster=""
         aria-hidden="true"
+        style={{ animation: 'hero-image-fade 0.3s ease-out' }}
       >
         {/* <source src="/hero.mp4" type="video/mp4" /> */}
       </video>
-      <div className="absolute inset-0 -z-10 bg-foreground" aria-hidden="true" />
+      <div className="absolute inset-0 -z-10 bg-background" aria-hidden="true" />
 
       <div className="mx-auto flex min-h-[88vh] max-w-[1400px] flex-col justify-between px-4 py-10 md:px-8">
-        <div className="flex items-center justify-between font-mono text-[11px] tracking-[0.25em] uppercase text-background/60">
+        <div className="flex items-center justify-between font-mono text-[11px] tracking-[0.25em] uppercase text-foreground/50">
           <span>Est. — Ontario</span>
           <span>High-Grade Hydration</span>
         </div>
 
-        <div className="flex flex-1 flex-col items-center justify-center text-center">
-          <p className="mb-6 font-mono text-xs tracking-[0.3em] uppercase text-background/60">
+        <div className="flex flex-1 flex-col items-center justify-center overflow-hidden text-center">
+          <p className="mb-6 font-mono text-xs tracking-[0.3em] uppercase text-foreground/50">
             Electrolytes / Wellness Shots
           </p>
           <h1 className="min-h-[1.1em] text-balance text-[18vw] font-bold leading-none tracking-tight md:text-[10rem]">
@@ -46,7 +47,7 @@ export function Hero() {
                 key={phrase}
                 aria-hidden={i !== index}
                 className={i === index ? 'block' : 'hidden'}
-                style={i === index ? { animation: 'marquee-in 0.6s ease-out' } : undefined}
+                style={i === index ? { animation: 'hero-slide 0.3s ease-out' } : undefined}
               >
                 {phrase}
               </span>
@@ -55,7 +56,7 @@ export function Hero() {
           <div className="mt-10">
             <a
               href="#store"
-              className="inline-block bg-background px-10 py-4 font-mono text-xs font-bold tracking-[0.25em] uppercase text-foreground transition-transform hover:-translate-y-0.5"
+              className="inline-block bg-foreground px-10 py-4 font-mono text-xs font-bold tracking-[0.25em] uppercase text-background transition-transform hover:-translate-y-0.5"
             >
               Shop Hydration
             </a>
@@ -66,7 +67,7 @@ export function Hero() {
           {phrases.map((phrase, i) => (
             <span
               key={phrase}
-              className={`h-[2px] w-10 transition-colors ${i === index ? 'bg-background' : 'bg-background/25'}`}
+              className={`h-[2px] w-10 transition-colors ${i === index ? 'bg-foreground' : 'bg-foreground/25'}`}
             />
           ))}
         </div>

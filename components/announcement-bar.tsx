@@ -23,8 +23,8 @@ export function AnnouncementBar() {
       <div className="relative mx-auto flex h-9 max-w-[1400px] items-center justify-center overflow-hidden px-4">
         <p
           key={index}
-          className="font-mono text-[11px] tracking-[0.25em] uppercase"
-          style={{ animation: 'marquee-in 0.5s ease-out' }}
+          className="w-full text-center font-mono text-[11px] tracking-[0.25em] uppercase"
+          style={{ animation: 'slide-in-right 0.5s ease-out' }}
           aria-live="polite"
         >
           {messages[index]}
