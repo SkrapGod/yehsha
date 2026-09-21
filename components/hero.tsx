@@ -1,4 +1,19 @@
+'use client'
+
+import { useEffect, useState } from 'react'
+
+const phrases = ['YEHSHA', 'COME TO LIFE', 'PURE HYDRATION']
+
 export function Hero() {
+  const [index, setIndex] = useState(0)
+
+  useEffect(() => {
+    const id = setInterval(() => {
+      setIndex((prev) => (prev + 1) % phrases.length)
+    }, 2600)
+    return () => clearInterval(id)
+  }, [])
+
   return (
     <section id="top" className="relative isolate min-h-[88vh] overflow-hidden bg-background text-foreground">
       {/* Background video — replace /hero.mp4 in the public folder with your upload */}
@@ -25,8 +40,20 @@ export function Hero() {
         </div>
 
         <div className="flex flex-1 flex-col items-center justify-center overflow-hidden text-center">
+          <p className="mb-6 font-mono text-xs tracking-[0.3em] uppercase text-foreground/60">
+            Electrolytes / Wellness Shots
+          </p>
           <h1 className="min-h-[1.1em] text-balance text-[18vw] font-bold leading-none tracking-tight md:text-[10rem]">
-            <span className="block">COME TO LIFE</span>
+            {phrases.map((phrase, i) => (
+              <span
+                key={phrase}
+                aria-hidden={i !== index}
+                className={i === index ? 'block' : 'hidden'}
+                style={i === index ? { animation: 'hero-slide 0.3s ease-out' } : undefined}
+              >
+                {phrase}
+              </span>
+            ))}
           </h1>
         </div>
 
@@ -38,6 +65,14 @@ export function Hero() {
           >
             Shop Hydration
           </a>
+          <div className="flex items-center justify-center gap-2">
+            {phrases.map((phrase, i) => (
+              <span
+                key={phrase}
+                className={`h-[2px] w-10 transition-colors ${i === index ? 'bg-foreground' : 'bg-foreground/25'}`}
+              />
+            ))}
+          </div>
         </div>
       </div>
     </section>
