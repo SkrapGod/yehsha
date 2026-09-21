@@ -1,19 +1,4 @@
-'use client'
-
-import { useEffect, useState } from 'react'
-
-const phrases = ['YEHSHA', 'COME TO LIFE', 'PURE HYDRATION']
-
 export function Hero() {
-  const [index, setIndex] = useState(0)
-
-  useEffect(() => {
-    const id = setInterval(() => {
-      setIndex((prev) => (prev + 1) % phrases.length)
-    }, 2600)
-    return () => clearInterval(id)
-  }, [])
-
   return (
     <section id="top" className="relative isolate min-h-[88vh] overflow-hidden bg-background text-foreground">
       {/* Background video — replace /hero.mp4 in the public folder with your upload */}
@@ -40,39 +25,9 @@ export function Hero() {
         </div>
 
         <div className="flex flex-1 flex-col items-center justify-center overflow-hidden text-center">
-          <p className="mb-6 font-mono text-xs tracking-[0.3em] uppercase text-foreground/60">
+          <p className="mb-[342px] font-mono text-xs tracking-[0.3em] uppercase text-foreground/60">
             Electrolytes / Wellness Shots
           </p>
-          <h1 className="min-h-[1.1em] text-balance text-[18vw] font-bold leading-none tracking-tight md:text-[10rem]">
-            {phrases.map((phrase, i) => (
-              <span
-                key={phrase}
-                aria-hidden={i !== index}
-                className={i === index ? 'block' : 'hidden'}
-                style={i === index ? { animation: 'hero-slide 0.3s ease-out' } : undefined}
-              >
-                {phrase}
-              </span>
-            ))}
-          </h1>
-        </div>
-
-        {/* CTA anchored 50% closer to the bottom edge of the hero */}
-        <div className="flex flex-col items-center gap-8 pb-[9vh]">
-          <a
-            href="#store"
-            className="inline-block bg-foreground px-10 py-4 font-mono text-xs font-bold tracking-[0.25em] uppercase text-background transition-transform hover:-translate-y-0.5"
-          >
-            Shop Hydration
-          </a>
-          <div className="flex items-center justify-center gap-2">
-            {phrases.map((phrase, i) => (
-              <span
-                key={phrase}
-                className={`h-[2px] w-10 transition-colors ${i === index ? 'bg-foreground' : 'bg-foreground/25'}`}
-              />
-            ))}
-          </div>
         </div>
       </div>
     </section>
