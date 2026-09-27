@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 
 const messages = [
   '$10.99 FLAT-RATE DELIVERY — GTA TO TRI-CITIES, HAMILTON',
-  '$11.99 FLAT-RATE DELIVERY — GTA, TRI-CITIES & GUELPH',
+  'ORDER CUTOFF — WEDNESDAY 11:59PM',
   'FREE LOCAL DELIVERY ON ORDERS OVER $100',
 ]
 
