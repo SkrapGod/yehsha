@@ -17,15 +17,11 @@ export function Hero() {
       <div className="mx-auto flex min-h-[88vh] max-w-[1400px] flex-col justify-between px-4 py-10 md:px-8">
         {/* Top corner labels — pinned to the outer edges and stay justified on wrap */}
         <div className="flex items-start justify-between gap-6 font-mono text-[11px] tracking-[0.25em] uppercase text-foreground/80">
-          <span className="max-w-[45%] text-left text-balance">Est. — Ontario</span>
+          <span className="max-w-[45%] text-left text-balance">CRAFTED —ON </span>
           <span className="max-w-[45%] text-right text-balance">High-Grade Hydration</span>
         </div>
 
-        <div className="flex flex-1 flex-col items-center justify-center overflow-hidden text-center">
-          <p className="mb-[342px] font-mono text-xs tracking-[0.3em] uppercase text-foreground/80">
-            Electrolytes / Wellness Shots
-          </p>
-        </div>
+        <div className="flex flex-1 flex-col items-center justify-center overflow-hidden text-center" />
       </div>
     </section>
   )
