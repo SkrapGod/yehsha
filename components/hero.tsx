@@ -41,10 +41,10 @@ export function Hero() {
       </div>
 
       {/* Mobile hero image + button — replace the video below md */}
-      <img src="/hero-mobile.jpg" alt="YEHSHA" className="min-h-0 w-full flex-1 object-contain md:hidden" />
+      <img src="/hero-mobile.jpg" alt="YEHSHA" className="min-h-0 w-full flex-1 scale-[1.12] object-contain md:hidden" />
       <a
         href="#store"
-        className="w-full shrink-0 bg-black p-3 text-center text-[16.6px] uppercase tracking-[0.1548em] text-white md:hidden"
+        className="relative z-10 w-full shrink-0 bg-black p-3 text-center text-[16.6px] uppercase tracking-[0.1548em] text-white md:hidden"
         style={shopButtonStyle}
       >
         Shop Yehsha
