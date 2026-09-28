@@ -77,7 +77,11 @@ export function ProductCard({ product }: { product: Product }) {
               </p>
             )}
           </div>
-          <p className="mt-0.5 font-mono text-[14.67px] font-bold whitespace-nowrap lg:text-[16px]">
+          <p
+            className={`font-mono text-[14.67px] font-bold whitespace-nowrap lg:text-[16px] ${
+              product.collection === 'electrolyte' ? 'mt-1' : 'mt-0.5'
+            }`}
+          >
             ${product.price.toFixed(2)}
           </p>
         </div>
