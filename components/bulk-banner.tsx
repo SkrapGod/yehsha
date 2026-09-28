@@ -1,7 +1,7 @@
 const tiers = [
   { qty: '12-PACK', save: 'SAVE 5%' },
   { qty: '24-PACK', save: 'SAVE 8%' },
-  { qty: '48-PACK', save: 'SAVE 12%' },
+  { qty: '48-PACK', save: 'SAVE 10%' },
 ]
 
 export function BulkBanner() {
@@ -13,12 +13,12 @@ export function BulkBanner() {
             <p className="font-mono text-[11px] tracking-[0.3em] uppercase text-background/60">
               Stock Up
             </p>
-            <h2 className="mt-3 text-4xl font-bold leading-tight tracking-tight text-balance md:text-5xl">
+            <h2 className="mt-1 text-4xl font-bold leading-none tracking-tight text-balance md:text-5xl">
               Buy more. <br /> Save more.
             </h2>
-            <p className="mt-4 text-sm leading-relaxed text-background/70">
-              Bulk pricing scales with your order. Mix flavors freely — discounts apply
-              automatically at checkout.
+            <p className="mt-4 text-sm leading-relaxed text-background/70 md:text-[15px]">
+              Bulk pricing scales with your order. Mix flavors freely — discounts apply at
+              checkout.
             </p>
           </div>
 

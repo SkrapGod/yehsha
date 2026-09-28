@@ -93,7 +93,7 @@ export type BulkTier = { units: number; label: string; discount: number }
 export const BULK_TIERS: BulkTier[] = [
   { units: 12, label: '12-PACK', discount: 0.05 },
   { units: 24, label: '24-PACK', discount: 0.08 },
-  { units: 48, label: '48-PACK', discount: 0.12 },
+  { units: 48, label: '48-PACK', discount: 0.1 },
 ]
 
 export function getActiveBulkTier(totalUnits: number): BulkTier | null {
