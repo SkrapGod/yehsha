@@ -20,10 +20,10 @@ export function AnnouncementBar() {
 
   return (
     <div className="bg-foreground text-background">
-      <div className="relative mx-auto flex h-9 max-w-[1400px] items-center justify-center overflow-hidden px-4">
+      <div className="relative mx-auto flex h-[42px] max-w-[1400px] items-center justify-center overflow-hidden px-4 md:h-9 lg:h-[40.4px]">
         <p
           key={index}
-          className="w-full text-center font-mono text-[11px] tracking-[0.25em] uppercase"
+          className="w-full text-center font-mono text-[14.4px] leading-tight md:text-[12.1px] md:leading-normal lg:text-[12.87px] tracking-[0.08em] md:tracking-[0.25em] uppercase"
           style={{ animation: 'slide-in-right 0.5s ease-out' }}
           aria-live="polite"
         >
