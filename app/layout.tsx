@@ -11,7 +11,7 @@ const spaceGrotesk = Space_Grotesk({
 })
 
 const googleSansFlex = localFont({
-  src: './fonts/GoogleSansFlex-Variable.ttf',
+  src: './fonts/GoogleSansFlex-Latin.woff2',
   variable: '--font-google-sans-flex',
   display: 'swap',
 })

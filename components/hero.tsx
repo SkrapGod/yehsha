@@ -1,3 +1,5 @@
+import { HeroVideo } from './hero-video'
+
 const shopButtonStyle = {
   fontFamily: 'var(--font-google-sans-flex)',
   fontVariationSettings: "'wght' 600, 'wdth' 105, 'GRAD' 62, 'ROND' 0, 'slnt' 0, 'opsz' 24",
@@ -9,19 +11,8 @@ export function Hero() {
       id="top"
       className="relative isolate flex h-[calc(100svh-42px)] flex-col overflow-hidden bg-background text-foreground md:block md:h-auto md:min-h-[75vh] lg:min-h-[88vh]"
     >
-      {/* Background video (tablet and up) — replace /hero.mp4 in the public folder with your upload */}
-      <video
-        className="absolute inset-0 -z-20 hidden h-full w-full object-contain md:block lg:object-cover"
-        autoPlay
-        muted
-        loop
-        playsInline
-        poster="/hero-poster.jpg"
-        aria-hidden="true"
-        style={{ animation: 'hero-image-fade 0.3s ease-out' }}
-      >
-        <source src="/hero.mp4" type="video/mp4" />
-      </video>
+      {/* Background video (tablet and up only, not downloaded on mobile) — replace /hero.mp4 in the public folder */}
+      <HeroVideo />
       <div className="mx-auto hidden max-w-[1400px] flex-col justify-between px-4 md:flex md:min-h-[75vh] md:px-8 md:py-10 lg:min-h-[88vh]">
         {/* Top corner labels — tablet and up only */}
         <div className="flex items-start justify-between gap-6 font-mono text-[11px] tracking-[0.25em] uppercase text-foreground/80 md:text-sm lg:text-[14.08px]">
