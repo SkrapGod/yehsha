@@ -123,6 +123,15 @@ export function CartDrawer() {
                         >
                           {line.product.flavor}
                         </p>
+                        <p
+                          className="mt-0.5 ml-0.5 text-[10px] tracking-[0.2em] text-foreground"
+                          style={{
+                            fontFamily: 'var(--font-google-sans-flex)',
+                            fontVariationSettings: "'wght' 600, 'wdth' 105, 'GRAD' 40, 'ROND' 0, 'slnt' 0, 'opsz' 14",
+                          }}
+                        >
+                          {line.quantity * (line.product.packSize ?? 1)} Bottles
+                        </p>
                       </div>
                       <button
                         type="button"
