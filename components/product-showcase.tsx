@@ -14,12 +14,12 @@ function CollectionHeader({
   return (
     <div className="mb-10 flex flex-col gap-4 border-b border-border pb-6 md:flex-row md:items-end md:justify-between">
       <div>
-        <p className="font-mono text-[11px] tracking-[0.3em] uppercase text-muted-foreground">
+        <p className="font-mono text-[11px] font-normal tracking-[0.18em] uppercase text-muted-foreground md:text-[11.55px] md:font-[450] md:tracking-[0.3em]">
           Collection {index}
         </p>
-        <h2 className="mt-2 text-4xl font-bold tracking-tight md:text-5xl">{title}</h2>
+        <h2 className="mt-2 text-4xl font-bold tracking-tight md:text-5xl md:font-[750]">{title}</h2>
       </div>
-      <p className="max-w-sm text-sm leading-relaxed text-muted-foreground">{subtitle}</p>
+      <p className="max-w-sm text-sm leading-relaxed text-muted-foreground md:text-[15px]">{subtitle}</p>
     </div>
   )
 }

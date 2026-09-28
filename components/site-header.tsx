@@ -40,7 +40,7 @@ export function SiteHeader() {
             <a
               key={link.href}
               href={link.href}
-              className="font-mono text-xs tracking-[0.15em] uppercase text-muted-foreground transition-colors hover:text-foreground"
+              className="font-mono text-[13px] tracking-[0.15em] uppercase text-muted-foreground transition-colors hover:text-foreground"
             >
               {link.label}
             </a>

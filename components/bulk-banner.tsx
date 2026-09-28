@@ -1,7 +1,7 @@
 const tiers = [
-  { qty: '12-PACK', save: 'SAVE 10%' },
-  { qty: '24-PACK', save: 'SAVE 18%' },
-  { qty: '48-PACK', save: 'SAVE 25%' },
+  { qty: '12-PACK', save: 'SAVE 5%' },
+  { qty: '24-PACK', save: 'SAVE 8%' },
+  { qty: '48-PACK', save: 'SAVE 12%' },
 ]
 
 export function BulkBanner() {

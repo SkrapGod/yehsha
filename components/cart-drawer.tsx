@@ -11,6 +11,8 @@ export function CartDrawer() {
     isOpen,
     itemCount,
     subtotal,
+    bulkDiscount,
+    bulkDiscountLabel,
     delivery,
     hst,
     total,
@@ -106,10 +108,21 @@ export function CartDrawer() {
                   <div className="flex flex-1 flex-col">
                     <div className="flex items-start justify-between gap-2">
                       <div>
-                        <p className="font-mono text-[10px] tracking-[0.15em] uppercase text-muted-foreground">
+                        <p
+                          className="font-mono text-[10px] tracking-[0.09em] uppercase text-muted-foreground"
+                          style={{ wordSpacing: '-0.21em' }}
+                        >
                           {line.product.name}
                         </p>
-                        <p className="font-bold leading-tight">{line.product.flavor}</p>
+                        <p
+                          className="whitespace-pre-line text-[15px] leading-tight tracking-[-0.01em]"
+                          style={{
+                            fontFamily: 'var(--font-google-sans-flex)',
+                            fontVariationSettings: "'wght' 500, 'wdth' 105, 'GRAD' 40, 'ROND' 0, 'slnt' 0, 'opsz' 16",
+                          }}
+                        >
+                          {line.product.flavor}
+                        </p>
                       </div>
                       <button
                         type="button"
@@ -160,6 +173,12 @@ export function CartDrawer() {
                 <dt className="text-muted-foreground">Subtotal</dt>
                 <dd className="tabular-nums">${subtotal.toFixed(2)}</dd>
               </div>
+              {bulkDiscount > 0 && (
+                <div className="flex items-center justify-between">
+                  <dt className="text-muted-foreground">{bulkDiscountLabel}</dt>
+                  <dd className="tabular-nums">-${bulkDiscount.toFixed(2)}</dd>
+                </div>
+              )}
               <div className="flex items-center justify-between">
                 <dt className="text-muted-foreground">Delivery</dt>
                 <dd className="tabular-nums">
