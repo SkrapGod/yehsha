@@ -8,30 +8,36 @@ import { useCart } from '@/components/cart-context'
 
 export function ProductCard({ product }: { product: Product }) {
   const [quantity, setQuantity] = useState(1)
+  const [justRevealed, setJustRevealed] = useState(false)
   const { addItem } = useCart()
   const available = product.available !== false
+
+  const revealSoldOut = () => {
+    setJustRevealed(true)
+    window.setTimeout(() => setJustRevealed(false), 1600)
+  }
 
   return (
     <article className="group flex flex-col border border-border bg-card">
       <div className="relative aspect-square overflow-hidden border-b border-border bg-muted">
-        <Image
-          src={product.image || '/placeholder.svg'}
-          alt={`${product.name} — ${product.flavor}`}
-          fill
-          sizes="(max-width: 768px) 100vw, 33vw"
-          className={`object-cover transition-transform duration-500 ${
-            available ? 'group-hover:scale-105' : 'grayscale'
-          }`}
-        />
+        {available ? (
+          <Image
+            src={product.image || '/placeholder.svg'}
+            alt={`${product.name} — ${product.flavor}`}
+            fill
+            sizes="(max-width: 768px) 100vw, 33vw"
+            className="object-cover transition-transform duration-500 group-hover:scale-105"
+          />
+        ) : (
+          <div className="absolute inset-0 bg-[#f3f1ec]" />
+        )}
         <span className="absolute left-0 top-0 bg-foreground px-3 py-1.5 font-mono text-[11px] tracking-[0.2em] uppercase text-background">
           {product.batch}
         </span>
         {!available && (
-          <div className="absolute inset-0 flex items-center justify-center bg-background/50">
-            <span className="border border-foreground bg-background px-4 py-2 font-mono text-xs font-bold tracking-[0.2em] uppercase text-foreground">
-              Sold Out
-            </span>
-          </div>
+          <span className="absolute right-0 top-0 bg-foreground px-3 py-1.5 font-mono text-[11px] tracking-[0.2em] uppercase text-background">
+            Sold Out
+          </span>
         )}
       </div>
 
@@ -90,9 +96,8 @@ export function ProductCard({ product }: { product: Product }) {
           <div className="flex items-center border border-border">
             <button
               type="button"
-              disabled={!available}
-              onClick={() => setQuantity((q) => Math.max(1, q - 1))}
-              className="flex h-11 w-10 items-center justify-center transition-colors hover:bg-foreground hover:text-background disabled:pointer-events-none disabled:opacity-40"
+              onClick={() => (available ? setQuantity((q) => Math.max(1, q - 1)) : revealSoldOut())}
+              className="flex h-11 w-10 items-center justify-center transition-colors hover:bg-foreground hover:text-background"
               aria-label={`Decrease quantity of ${product.flavor}`}
             >
               <Minus className="h-3.5 w-3.5" />
@@ -102,9 +107,8 @@ export function ProductCard({ product }: { product: Product }) {
             </span>
             <button
               type="button"
-              disabled={!available}
-              onClick={() => setQuantity((q) => q + 1)}
-              className="flex h-11 w-10 items-center justify-center transition-colors hover:bg-foreground hover:text-background disabled:pointer-events-none disabled:opacity-40"
+              onClick={() => (available ? setQuantity((q) => q + 1) : revealSoldOut())}
+              className="flex h-11 w-10 items-center justify-center transition-colors hover:bg-foreground hover:text-background"
               aria-label={`Increase quantity of ${product.flavor}`}
             >
               <Plus className="h-3.5 w-3.5" />
@@ -113,14 +117,17 @@ export function ProductCard({ product }: { product: Product }) {
 
           <button
             type="button"
-            disabled={!available}
             onClick={() => {
+              if (!available) {
+                revealSoldOut()
+                return
+              }
               addItem(product, quantity)
               setQuantity(1)
             }}
-            className="flex-1 bg-foreground px-4 font-mono text-[13.33px] font-bold tracking-[0.12em] uppercase text-background transition-transform hover:-translate-y-0.5 disabled:pointer-events-none disabled:opacity-40 disabled:hover:translate-y-0"
+            className="flex-1 bg-foreground px-4 font-mono text-[13.33px] font-bold tracking-[0.12em] uppercase text-background transition-transform hover:-translate-y-0.5"
           >
-            {available ? 'Add to Cart' : 'Sold Out'}
+            {justRevealed ? 'Sold Out' : 'Add to Cart'}
           </button>
         </div>
       </div>
