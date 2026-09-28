@@ -35,12 +35,13 @@ export function SiteHeader() {
           </a>
         </div>
 
-        <nav className="hidden items-center gap-10 md:flex" aria-label="Primary">
+        <nav className="hidden items-center gap-9 md:flex" aria-label="Primary">
           {links.map((link) => (
             <a
               key={link.href}
               href={link.href}
               className="font-mono text-[13px] tracking-[0.15em] uppercase text-muted-foreground transition-colors hover:text-foreground"
+              style={link.label === 'Solace Shots' ? { wordSpacing: '-0.55em' } : undefined}
             >
               {link.label}
             </a>

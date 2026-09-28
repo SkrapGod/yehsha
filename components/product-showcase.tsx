@@ -12,14 +12,14 @@ function CollectionHeader({
   subtitle: string
 }) {
   return (
-    <div className="mb-10 flex flex-col gap-4 border-b border-border pb-6 md:flex-row md:items-end md:justify-between">
-      <div>
-        <p className="font-mono text-[11px] font-normal tracking-[0.18em] uppercase text-muted-foreground md:text-[11.55px] md:font-[450] md:tracking-[0.3em]">
-          Collection {index}
-        </p>
-        <h2 className="mt-2 text-4xl font-bold tracking-tight md:text-5xl md:font-[750]">{title}</h2>
+    <div className="mb-10 border-b border-border pb-6">
+      <p className="font-mono text-[11px] font-normal tracking-[0.18em] uppercase text-muted-foreground md:text-[11.55px] md:font-[450] md:tracking-[0.3em]">
+        Collection {index}
+      </p>
+      <div className="mt-2 flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
+        <h2 className="text-4xl font-bold tracking-tight md:text-5xl md:font-[750]">{title}</h2>
+        <p className="max-w-sm text-sm leading-relaxed text-muted-foreground md:text-[15px]">{subtitle}</p>
       </div>
-      <p className="max-w-sm text-sm leading-relaxed text-muted-foreground md:text-[15px]">{subtitle}</p>
     </div>
   )
 }
@@ -33,7 +33,7 @@ export function ProductShowcase() {
       <section id="store" className="mx-auto max-w-[1400px] scroll-mt-[-64px] px-4 py-20 md:scroll-mt-0 md:px-8 md:py-28">
         <CollectionHeader
           index="01"
-          title="Electrolyte Beverage"
+          title="Electrolyte Drinks"
           subtitle="Zero sugar. 1000mg mineral blend. Bottled in small batches for peak freshness."
         />
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
