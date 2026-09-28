@@ -91,9 +91,9 @@ export type BulkTier = { units: number; label: string; discount: number }
 // discount stays applied — it doesn't increase again until the order reaches
 // the next tier's threshold.
 export const BULK_TIERS: BulkTier[] = [
-  { units: 12, label: '12-PACK', discount: 0.05 },
-  { units: 24, label: '24-PACK', discount: 0.08 },
-  { units: 48, label: '48-PACK', discount: 0.1 },
+  { units: 12, label: '12-PACK', discount: 0.04 },
+  { units: 24, label: '24-PACK', discount: 0.05 },
+  { units: 48, label: '48-PACK', discount: 0.06 },
 ]
 
 export function getActiveBulkTier(totalUnits: number): BulkTier | null {
