@@ -2,7 +2,7 @@
 
 import { createContext, useCallback, useContext, useMemo, useState } from 'react'
 import type { Product } from '@/lib/products'
-import { FLAT_RATE_DELIVERY, FREE_DELIVERY_THRESHOLD } from '@/lib/products'
+import { FLAT_RATE_DELIVERY, FREE_DELIVERY_THRESHOLD, HST_RATE } from '@/lib/products'
 
 export type CartLine = {
   product: Product
@@ -15,6 +15,7 @@ type CartContextValue = {
   itemCount: number
   subtotal: number
   delivery: number
+  hst: number
   total: number
   remainingForFreeDelivery: number
   freeDeliveryProgress: number
@@ -63,6 +64,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     const subtotal = lines.reduce((sum, line) => sum + line.product.price * line.quantity, 0)
     const qualifiesFree = subtotal >= FREE_DELIVERY_THRESHOLD
     const delivery = itemCount === 0 || qualifiesFree ? 0 : FLAT_RATE_DELIVERY
+    const hst = Math.round((subtotal + delivery) * HST_RATE * 100) / 100
     const remainingForFreeDelivery = Math.max(0, FREE_DELIVERY_THRESHOLD - subtotal)
     const freeDeliveryProgress = Math.min(100, (subtotal / FREE_DELIVERY_THRESHOLD) * 100)
 
@@ -72,7 +74,8 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
       itemCount,
       subtotal,
       delivery,
-      total: subtotal + delivery,
+      hst,
+      total: subtotal + delivery + hst,
       remainingForFreeDelivery,
       freeDeliveryProgress,
       addItem,

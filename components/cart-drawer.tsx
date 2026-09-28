@@ -12,6 +12,7 @@ export function CartDrawer() {
     itemCount,
     subtotal,
     delivery,
+    hst,
     total,
     remainingForFreeDelivery,
     freeDeliveryProgress,
@@ -39,7 +40,7 @@ export function CartDrawer() {
         aria-label="Shopping cart"
       >
         <div className="flex items-center justify-between border-b border-border px-6 py-5">
-          <h2 className="font-mono text-xs font-bold tracking-[0.25em] uppercase">
+          <h2 className="font-mono text-[13.8px] font-bold tracking-[0.25em] uppercase">
             Your Cart ({itemCount})
           </h2>
           <button
@@ -153,8 +154,8 @@ export function CartDrawer() {
         </div>
 
         {lines.length > 0 && (
-          <div className="border-t border-border px-6 py-5">
-            <dl className="flex flex-col gap-2 font-mono text-xs tracking-[0.1em] uppercase">
+          <div className="flex flex-col border-t border-border md:px-6 md:py-5">
+            <dl className="order-1 flex flex-col gap-2 px-6 pt-5 font-mono text-xs tracking-[0.1em] uppercase md:p-0">
               <div className="flex items-center justify-between">
                 <dt className="text-muted-foreground">Subtotal</dt>
                 <dd className="tabular-nums">${subtotal.toFixed(2)}</dd>
@@ -165,6 +166,10 @@ export function CartDrawer() {
                   {delivery === 0 ? 'Free' : `$${FLAT_RATE_DELIVERY.toFixed(2)}`}
                 </dd>
               </div>
+              <div className="flex items-center justify-between">
+                <dt className="text-muted-foreground">HST (13%)</dt>
+                <dd className="tabular-nums">${hst.toFixed(2)}</dd>
+              </div>
               <div className="mt-2 flex items-center justify-between border-t border-border pt-3 text-sm font-bold text-foreground">
                 <dt>Total</dt>
                 <dd className="tabular-nums">${total.toFixed(2)}</dd>
@@ -173,11 +178,11 @@ export function CartDrawer() {
 
             <button
               type="button"
-              className="mt-5 w-full bg-foreground py-4 font-mono text-xs font-bold tracking-[0.25em] uppercase text-background transition-transform hover:-translate-y-0.5"
+              className="order-3 w-full bg-foreground py-4 font-mono text-[13.8px] font-bold tracking-[0.25em] uppercase text-background transition-transform hover:-translate-y-0.5 md:order-2 md:mt-5"
             >
               Proceed to Checkout
             </button>
-            <p className="mt-3 text-center font-mono text-[10px] tracking-[0.15em] uppercase text-muted-foreground">
+            <p className="order-2 px-6 pb-4 pt-3 text-center font-mono text-[10px] tracking-[0.15em] uppercase text-muted-foreground md:order-3 md:mt-3 md:p-0">
               Secure checkout — powered by Stripe
             </p>
           </div>

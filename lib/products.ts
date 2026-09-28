@@ -73,4 +73,5 @@ export const products: Product[] = [
 ]
 
 export const FREE_DELIVERY_THRESHOLD = 100
-export const FLAT_RATE_DELIVERY = 11.99
+export const FLAT_RATE_DELIVERY = 10.99
+export const HST_RATE = 0.13
