@@ -6,6 +6,7 @@ import { ProductShowcase } from '@/components/product-showcase'
 import { AboutSection } from '@/components/about-section'
 import { SiteFooter } from '@/components/site-footer'
 import { CartDrawer } from '@/components/cart-drawer'
+import { FloatingCart } from '@/components/floating-cart'
 
 export default function Page() {
   return (
@@ -18,6 +19,7 @@ export default function Page() {
         <AboutSection />
       </main>
       <SiteFooter />
+      <FloatingCart />
       <CartDrawer />
     </CartProvider>
   )

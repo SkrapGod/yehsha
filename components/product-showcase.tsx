@@ -30,7 +30,7 @@ export function ProductShowcase() {
 
   return (
     <>
-      <section id="store" className="mx-auto max-w-[1400px] px-4 py-20 md:px-8 md:py-28">
+      <section id="store" className="mx-auto max-w-[1400px] scroll-mt-[-64px] px-4 py-20 md:scroll-mt-0 md:px-8 md:py-28">
         <CollectionHeader
           index="01"
           title="Electrolyte Beverage"
@@ -45,7 +45,7 @@ export function ProductShowcase() {
 
       <BulkBanner />
 
-      <section id="shots" className="mx-auto max-w-[1400px] px-4 py-20 md:px-8 md:py-28">
+      <section id="shots" className="mx-auto max-w-[1400px] scroll-mt-[-64px] px-4 py-20 md:scroll-mt-0 md:px-8 md:py-28">
         <CollectionHeader
           index="02"
           title="Solace Shots"
