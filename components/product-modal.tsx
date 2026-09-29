@@ -43,13 +43,13 @@ export function ProductModal({ product, onClose }: { product: Product; onClose: 
 
       <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
         <div
-          className="flex max-h-full w-full max-w-md flex-col overflow-y-auto border border-border bg-background"
+          className="flex max-h-full w-full max-w-md flex-col overflow-hidden border border-border bg-background"
           role="dialog"
           aria-modal="true"
           aria-label={`${product.name} — ${product.flavor}`}
         >
           <div
-            className="relative aspect-square shrink-0 touch-pan-y overflow-hidden border-b border-border bg-muted"
+            className="relative aspect-square max-h-[42dvh] shrink-0 touch-pan-y overflow-hidden border-b border-border bg-muted"
             onTouchStart={(e) => {
               touchStartX.current = e.touches[0].clientX
             }}
@@ -201,11 +201,11 @@ export function ProductModal({ product, onClose }: { product: Product; onClose: 
               {product.description}
             </p>
 
-            <p className="mt-4 min-h-[110px] font-sans text-sm leading-relaxed text-muted-foreground">
+            <p className="mt-[7.2px] font-sans text-sm leading-relaxed text-muted-foreground">
               {product.extendedDescription || product.description}
             </p>
 
-            <div className="mt-auto flex items-stretch gap-3 pt-6" onClick={(e) => e.stopPropagation()}>
+            <div className="mt-auto flex items-stretch gap-3 pt-4" onClick={(e) => e.stopPropagation()}>
               <div className="flex items-center border border-border">
                 <button
                   type="button"
