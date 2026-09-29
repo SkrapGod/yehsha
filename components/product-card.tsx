@@ -5,10 +5,12 @@ import { Minus, Plus } from 'lucide-react'
 import { useState } from 'react'
 import type { Product } from '@/lib/products'
 import { useCart } from '@/components/cart-context'
+import { ProductModal } from '@/components/product-modal'
 
 export function ProductCard({ product }: { product: Product }) {
   const [quantity, setQuantity] = useState(1)
   const [justRevealed, setJustRevealed] = useState(false)
+  const [modalOpen, setModalOpen] = useState(false)
   const { addItem } = useCart()
   const available = product.available !== false
 
@@ -18,7 +20,10 @@ export function ProductCard({ product }: { product: Product }) {
   }
 
   return (
-    <article className="group flex flex-col border border-border bg-card">
+    <article
+      className="group flex cursor-pointer flex-col border border-border bg-card"
+      onClick={() => setModalOpen(true)}
+    >
       <div className="relative aspect-square overflow-hidden border-b border-border bg-muted">
         {available ? (
           <Image
@@ -92,7 +97,7 @@ export function ProductCard({ product }: { product: Product }) {
           {product.description}
         </p>
 
-        <div className="mt-auto flex items-stretch gap-3 pt-6">
+        <div className="mt-auto flex items-stretch gap-3 pt-6" onClick={(e) => e.stopPropagation()}>
           <div className="flex items-center border border-border">
             <button
               type="button"
@@ -131,6 +136,12 @@ export function ProductCard({ product }: { product: Product }) {
           </button>
         </div>
       </div>
+
+      {modalOpen && (
+        <div onClick={(e) => e.stopPropagation()}>
+          <ProductModal product={product} onClose={() => setModalOpen(false)} />
+        </div>
+      )}
     </article>
   )
 }

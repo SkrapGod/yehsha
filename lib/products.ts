@@ -6,6 +6,9 @@
   price: number
   packSize?: number
   image: string
+  secondaryImage?: string
+  tertiaryImage?: string
+  extendedDescription?: string
   collection: 'electrolyte' | 'shots'
   batch: string
   available?: boolean
@@ -21,7 +24,7 @@ export const products: Product[] = [
     packSize: 4,
     image: '/products/electrolyte-citrus.png',
     collection: 'electrolyte',
-    batch: 'BATCH 014',
+    batch: 'BATCH 261',
   },
   {
     id: 'elec-berry',
@@ -32,7 +35,7 @@ export const products: Product[] = [
     packSize: 4,
     image: '/products/electrolyte-berry.png',
     collection: 'electrolyte',
-    batch: 'BATCH 014',
+    batch: 'BATCH 307',
   },
   {
     id: 'elec-mint',
@@ -43,7 +46,7 @@ export const products: Product[] = [
     packSize: 4,
     image: '/products/electrolyte-mint.png',
     collection: 'electrolyte',
-    batch: 'BATCH 014',
+    batch: 'BATCH 981',
   },
   {
     id: 'shot-immunity',
@@ -54,7 +57,7 @@ export const products: Product[] = [
     packSize: 4,
     image: '/products/shot-immunity.png',
     collection: 'shots',
-    batch: 'BATCH 007',
+    batch: 'BATCH 612',
   },
   {
     id: 'shot-recovery',
@@ -65,7 +68,7 @@ export const products: Product[] = [
     packSize: 4,
     image: '/products/shot-recovery.png',
     collection: 'shots',
-    batch: 'BATCH 007',
+    batch: 'BATCH 408',
   },
   {
     id: 'shot-energy',
@@ -76,7 +79,7 @@ export const products: Product[] = [
     packSize: 4,
     image: '/products/shot-energy.png',
     collection: 'shots',
-    batch: 'BATCH 007',
+    batch: 'BATCH 789',
     available: false,
   },
 ]
