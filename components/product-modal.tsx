@@ -31,7 +31,7 @@ export function ProductModal({ product, onClose }: { product: Product; onClose: 
     window.setTimeout(() => setJustRevealed(false), 1600)
   }
 
-  const goTo = (i: number) => setSlide(Math.max(0, Math.min(2, i)))
+  const goTo = (i: number) => setSlide(((i % 3) + 3) % 3)
 
   return (
     <>
@@ -123,7 +123,7 @@ export function ProductModal({ product, onClose }: { product: Product; onClose: 
             <button
               type="button"
               onClick={() => goTo(slide - 1)}
-              className="absolute left-2 top-1/2 flex h-8 w-8 -translate-y-1/2 items-center justify-center border border-border bg-background/90 transition-colors hover:bg-foreground hover:text-background"
+              className="absolute left-2 top-1/2 hidden h-8 w-8 -translate-y-1/2 items-center justify-center border border-border bg-background/90 transition-colors lg:flex hover:bg-foreground hover:text-background"
               aria-label="Previous image"
             >
               <ChevronLeft className="h-4 w-4" />
@@ -131,13 +131,13 @@ export function ProductModal({ product, onClose }: { product: Product; onClose: 
             <button
               type="button"
               onClick={() => goTo(slide + 1)}
-              className="absolute right-2 top-1/2 flex h-8 w-8 -translate-y-1/2 items-center justify-center border border-border bg-background/90 transition-colors hover:bg-foreground hover:text-background"
+              className="absolute right-2 top-1/2 hidden h-8 w-8 -translate-y-1/2 items-center justify-center border border-border bg-background/90 transition-colors lg:flex hover:bg-foreground hover:text-background"
               aria-label="Next image"
             >
               <ChevronRight className="h-4 w-4" />
             </button>
 
-            <div className="absolute bottom-3 left-1/2 flex -translate-x-1/2 gap-2">
+            <div className="absolute bottom-3 left-1/2 hidden -translate-x-1/2 gap-2 lg:flex">
               {[0, 1, 2].map((i) => (
                 <button
                   key={i}
@@ -238,7 +238,7 @@ export function ProductModal({ product, onClose }: { product: Product; onClose: 
                   addItem(product, quantity)
                   setQuantity(1)
                 }}
-                className="flex-1 bg-foreground px-4 font-mono text-[13.33px] font-bold tracking-[0.12em] uppercase text-background transition-transform hover:-translate-y-0.5"
+                className="flex-1 border border-foreground bg-foreground px-4 font-mono text-[13.33px] font-bold tracking-[0.12em] uppercase text-background transition-colors hover:bg-background hover:text-foreground"
               >
                 {justRevealed ? 'Sold Out' : 'Add to Cart'}
               </button>

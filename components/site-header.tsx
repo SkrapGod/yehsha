@@ -17,7 +17,7 @@ export function SiteHeader() {
   return (
     <header className="sticky top-0 z-40 border-border bg-background/90 backdrop-blur-md md:border-b">
       {/* Tablet and desktop header row — hidden on mobile */}
-      <div className="mx-auto hidden h-16 max-w-[1400px] items-center justify-between px-4 md:flex md:px-8">
+      <div className="mx-auto hidden h-14 max-w-[1400px] items-center justify-between px-4 md:flex md:px-8">
         <div className="flex items-center gap-3">
           <button
             type="button"
@@ -35,12 +35,12 @@ export function SiteHeader() {
           </a>
         </div>
 
-        <nav className="hidden items-center gap-9 md:flex" aria-label="Primary">
+        <nav className="hidden items-center gap-[25.2px] md:flex" aria-label="Primary">
           {links.map((link) => (
             <a
               key={link.href}
               href={link.href}
-              className="font-mono text-[13px] tracking-[0.15em] uppercase text-muted-foreground transition-colors hover:text-foreground"
+              className="font-mono text-[14.33px] tracking-[0.15em] uppercase text-muted-foreground transition-colors hover:text-foreground"
               style={link.label === 'Solace Shots' ? { wordSpacing: '-0.55em' } : undefined}
             >
               {link.label}

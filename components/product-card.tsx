@@ -130,7 +130,7 @@ export function ProductCard({ product }: { product: Product }) {
               addItem(product, quantity)
               setQuantity(1)
             }}
-            className="flex-1 bg-foreground px-4 font-mono text-[13.33px] font-bold tracking-[0.12em] uppercase text-background transition-transform hover:-translate-y-0.5"
+            className="flex-1 border border-foreground bg-foreground px-4 font-mono text-[13.33px] font-bold tracking-[0.12em] uppercase text-background transition-colors hover:bg-background hover:text-foreground"
           >
             {justRevealed ? 'Sold Out' : 'Add to Cart'}
           </button>
