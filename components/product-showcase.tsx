@@ -16,9 +16,17 @@ function CollectionHeader({
       <p className="font-mono text-[11px] font-normal tracking-[0.18em] uppercase text-muted-foreground md:text-[11.55px] md:font-[450] md:tracking-[0.3em]">
         Collection {index}
       </p>
-      <div className="mt-2 flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
-        <h2 className="text-4xl font-bold tracking-tight md:text-5xl md:font-[750]">{title}</h2>
-        <p className="max-w-sm text-sm leading-relaxed text-muted-foreground md:text-[15px]">{subtitle}</p>
+      <div className="mt-[5.1px] flex flex-col gap-[10.2px] md:mt-2 md:flex-row md:items-start md:justify-between md:gap-4">
+        <h2
+          className="text-4xl tracking-tight md:text-5xl"
+          style={{
+            fontFamily: 'var(--font-google-sans-flex)',
+            fontVariationSettings: "'wght' 650, 'wdth' 105, 'GRAD' 40, 'ROND' 0, 'slnt' 0, 'opsz' 40",
+          }}
+        >
+          {title}
+        </h2>
+        <p className="max-w-sm text-[15.33px] leading-relaxed text-muted-foreground md:text-[16.33px]">{subtitle}</p>
       </div>
     </div>
   )
@@ -33,7 +41,7 @@ export function ProductShowcase() {
       <section id="store" className="mx-auto max-w-[1400px] scroll-mt-[-64px] px-4 py-20 md:scroll-mt-0 md:px-8 md:py-28">
         <CollectionHeader
           index="01"
-          title="Electrolyte Drinks"
+          title="Pure Hydration"
           subtitle="Zero sugar. 1000mg mineral blend. Bottled in small batches for peak freshness."
         />
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">

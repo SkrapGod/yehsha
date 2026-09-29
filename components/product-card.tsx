@@ -87,11 +87,7 @@ export function ProductCard({ product }: { product: Product }) {
         </div>
 
         <p
-          className="mt-2 text-sm leading-snug text-muted-foreground"
-          style={{
-            fontFamily: 'var(--font-google-sans-flex)',
-            fontVariationSettings: "'wght' 400, 'wdth' 100, 'GRAD' 0, 'ROND' 0, 'slnt' 0, 'opsz' 14",
-          }}
+          className="mt-2 font-sans text-[15.33px] leading-snug text-muted-foreground"
         >
           {product.description}
         </p>
