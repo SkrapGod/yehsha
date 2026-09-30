@@ -31,7 +31,7 @@ export function ProductCard({ product }: { product: Product }) {
             alt={`${product.name} — ${product.flavor}`}
             fill
             sizes="(max-width: 768px) 100vw, 33vw"
-            className="object-cover transition-transform duration-500 group-hover:scale-105"
+            className="object-cover transition-transform duration-500 md:group-hover:scale-105"
             style={product.imageBrightness || product.imageBlur ? { filter: [product.imageBrightness && `brightness(${product.imageBrightness})`, product.imageBlur && `blur(${product.imageBlur}px)`].filter(Boolean).join(" ") } : undefined}
           />
         ) : (
