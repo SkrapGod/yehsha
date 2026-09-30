@@ -21,7 +21,7 @@ export function ProductCard({ product }: { product: Product }) {
 
   return (
     <article
-      className="group flex cursor-pointer flex-col border-[3px] border-[#121110] bg-[#121110] text-[#f7f5f1]"
+      className="group flex cursor-pointer flex-col border-[2px] border-[#121110] bg-[#121110] text-[#f7f5f1]"
       onClick={() => setModalOpen(true)}
     >
       <div className="relative aspect-square overflow-hidden border-b border-[#121110] bg-muted">
