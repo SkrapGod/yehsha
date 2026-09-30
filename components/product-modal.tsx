@@ -43,7 +43,7 @@ export function ProductModal({ product, onClose }: { product: Product; onClose: 
 
       <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
         <div
-          className="flex max-h-full w-full max-w-md flex-col overflow-hidden border border-border bg-background"
+          className="flex max-h-full w-full max-w-md flex-col overflow-hidden border border-border bg-background text-foreground"
           role="dialog"
           aria-modal="true"
           aria-label={`${product.name} — ${product.flavor}`}
@@ -73,9 +73,16 @@ export function ProductModal({ product, onClose }: { product: Product; onClose: 
                     fill
                     sizes="(max-width: 448px) 100vw, 448px"
                     className="object-cover"
+                    style={product.imageBrightness || product.imageBlur ? { filter: [product.imageBrightness && `brightness(${product.imageBrightness})`, product.imageBlur && `blur(${product.imageBlur}px)`].filter(Boolean).join(" ") } : undefined}
                   />
                 ) : (
                   <div className="absolute inset-0 bg-[#f3f1ec]" />
+                )}
+                {available && product.collection === 'shots' && (
+                  <div
+            className="pointer-events-none absolute inset-0"
+            style={{ backgroundColor: `rgba(0,0,0,${product.imageOverlay ?? 0.1})` }}
+          />
                 )}
               </div>
               <div className="relative h-full w-full shrink-0 bg-[#f3f1ec]">
@@ -114,7 +121,7 @@ export function ProductModal({ product, onClose }: { product: Product; onClose: 
             <button
               type="button"
               onClick={onClose}
-              className="absolute right-3 top-3 flex h-8 w-8 items-center justify-center border border-border bg-background transition-colors hover:bg-foreground hover:text-background"
+              className="absolute right-3 top-3 flex h-8 w-8 items-center justify-center border border-border bg-background text-foreground transition-colors hover:bg-foreground hover:text-background"
               aria-label="Close"
             >
               <X className="h-4 w-4" />
@@ -123,7 +130,7 @@ export function ProductModal({ product, onClose }: { product: Product; onClose: 
             <button
               type="button"
               onClick={() => goTo(slide - 1)}
-              className="absolute left-2 top-1/2 hidden h-8 w-8 -translate-y-1/2 items-center justify-center border border-border bg-background/90 transition-colors lg:flex hover:bg-foreground hover:text-background"
+              className="absolute left-2 top-1/2 hidden h-8 w-8 -translate-y-1/2 items-center justify-center border border-border bg-background/90 text-foreground transition-colors lg:flex hover:bg-foreground hover:text-background"
               aria-label="Previous image"
             >
               <ChevronLeft className="h-4 w-4" />
@@ -131,7 +138,7 @@ export function ProductModal({ product, onClose }: { product: Product; onClose: 
             <button
               type="button"
               onClick={() => goTo(slide + 1)}
-              className="absolute right-2 top-1/2 hidden h-8 w-8 -translate-y-1/2 items-center justify-center border border-border bg-background/90 transition-colors lg:flex hover:bg-foreground hover:text-background"
+              className="absolute right-2 top-1/2 hidden h-8 w-8 -translate-y-1/2 items-center justify-center border border-border bg-background/90 text-foreground transition-colors lg:flex hover:bg-foreground hover:text-background"
               aria-label="Next image"
             >
               <ChevronRight className="h-4 w-4" />
@@ -157,15 +164,15 @@ export function ProductModal({ product, onClose }: { product: Product; onClose: 
               <div>
                 {product.collection === 'electrolyte' && (
                   <p
-                    className="font-mono text-[11.33px] tracking-[0.2em] uppercase"
+                    className="relative -top-px font-mono text-[11.33px] tracking-[0.12em] uppercase"
                     style={{ color: 'oklch(0.216 0 0)' }}
                   >
                     YEHSHA
                   </p>
                 )}
                 <h3
-                  className={`-mt-0.5 whitespace-pre-line text-[22.67px] tracking-[-0.02em] ${
-                    product.collection === 'shots' ? 'leading-none' : 'leading-tight'
+                  className={`whitespace-pre-line text-[22.67px] tracking-[-0.02em] ${
+                    product.collection === 'shots' ? '-mt-0.5 leading-none' : '-mt-[6px] leading-tight'
                   }`}
                   style={{
                     fontFamily: 'var(--font-google-sans-flex)',

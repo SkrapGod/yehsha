@@ -6,6 +6,9 @@
   price: number
   packSize?: number
   image: string
+  imageOverlay?: number
+  imageBrightness?: number
+  imageBlur?: number
   secondaryImage?: string
   tertiaryImage?: string
   extendedDescription?: string
@@ -16,24 +19,14 @@
 
 export const products: Product[] = [
   {
-    id: 'elec-citrus',
-    name: 'YEHSHA',
-    flavor: 'ORIGINAL',
-    description: 'Bright citrus with a mineral finish. 1000mg electrolyte blend, zero sugar.',
-    price: 21.99,
-    packSize: 4,
-    image: '/products/electrolyte-citrus.png',
-    collection: 'electrolyte',
-    batch: 'BATCH 261',
-  },
-  {
     id: 'elec-berry',
     name: 'YEHSHA',
     flavor: 'FOUNDERS',
     description: 'Deep berry profile balanced with sea salt. 1000mg electrolyte blend, zero sugar.',
     price: 21.99,
     packSize: 4,
-    image: '/products/electrolyte-berry.png',
+    image: '/products/electrolyte-founders.jpg',
+    imageBrightness: 1.01,
     collection: 'electrolyte',
     batch: 'BATCH 307',
   },
@@ -44,20 +37,22 @@ export const products: Product[] = [
     description: 'Crisp mint with a clean electrolyte kick. 1000mg blend, zero sugar.',
     price: 21.99,
     packSize: 4,
-    image: '/products/electrolyte-mint.png',
+    image: '/products/electrolyte-moonlight-v3.jpg',
+    imageBrightness: 1.06,
     collection: 'electrolyte',
     batch: 'BATCH 981',
   },
   {
-    id: 'shot-immunity',
-    name: 'Solace Shot',
-    flavor: 'STAMINA+\nRECOVERY',
-    description: 'Ginger, turmeric & vitamin C. A daily defense in a 2oz pour.',
-    price: 17.99,
+    id: 'elec-citrus',
+    name: 'YEHSHA',
+    flavor: 'ORIGINAL',
+    description: 'Bright citrus with a mineral finish. 1000mg electrolyte blend, zero sugar.',
+    price: 21.99,
     packSize: 4,
-    image: '/products/shot-immunity.png',
-    collection: 'shots',
-    batch: 'BATCH 612',
+    image: '/products/electrolyte-original.jpg',
+    imageBrightness: 1.07,
+    collection: 'electrolyte',
+    batch: 'BATCH 268',
   },
   {
     id: 'shot-recovery',
@@ -66,9 +61,23 @@ export const products: Product[] = [
     description: 'Tart cherry & magnesium to help you wind down and repair.',
     price: 17.99,
     packSize: 4,
-    image: '/products/shot-recovery.png',
+    image: '/products/shot-defense-digestion.jpg',
+    imageOverlay: 0.04,
     collection: 'shots',
-    batch: 'BATCH 408',
+    batch: 'BATCH 428',
+  },
+  {
+    id: 'shot-immunity',
+    name: 'Solace Shot',
+    flavor: 'STAMINA+\nRECOVERY',
+    description: 'Ginger, turmeric & vitamin C. A daily defense in a 2oz pour.',
+    price: 17.99,
+    packSize: 4,
+    image: '/products/shot-stamina-recovery.jpg',
+    imageOverlay: 0.06,
+    imageBrightness: 1.05,
+    collection: 'shots',
+    batch: 'BATCH 612',
   },
   {
     id: 'shot-energy',
