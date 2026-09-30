@@ -1,7 +1,7 @@
 'use client'
 
 import Image from 'next/image'
-import { useRef, useState } from 'react'
+import { useRef } from 'react'
 import { Minus, Plus, X } from 'lucide-react'
 import { useCart } from '@/components/cart-context'
 import { FLAT_RATE_DELIVERY } from '@/lib/products'
@@ -14,14 +14,13 @@ function formatPostalCode(value: string) {
 }
 
 export function CartDrawer() {
-  const [postalCode, setPostalCode] = useState('')
-  const postalResult = postalCode.length === 7 ? checkPostalCode(postalCode) : null
-  const canCheckout = postalResult?.deliverable === true
   const postalInputRef = useRef<HTMLInputElement>(null)
 
   const {
     lines,
     isOpen,
+    postalCode,
+    setPostalCode,
     itemCount,
     subtotal,
     bulkDiscount,
@@ -35,6 +34,9 @@ export function CartDrawer() {
     removeItem,
     closeCart,
   } = useCart()
+
+  const postalResult = postalCode.length === 7 ? checkPostalCode(postalCode) : null
+  const canCheckout = postalResult?.deliverable === true
 
   return (
     <>
