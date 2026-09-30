@@ -52,7 +52,7 @@ export function CartDrawer() {
         aria-modal="true"
         aria-label="Shopping cart"
       >
-        <div className="flex items-center justify-between border-b border-border px-6 py-5">
+        <div className="flex items-center justify-between border-b border-border px-6 py-4">
           <h2 className="font-mono text-[13.8px] font-bold tracking-[0.25em] uppercase">
             Your Cart ({itemCount})
           </h2>
@@ -67,7 +67,7 @@ export function CartDrawer() {
         </div>
 
         {/* Free delivery tracker */}
-        <div className="border-b border-border px-6 py-5">
+        <div className="border-b border-border px-6 py-4">
           <p className="font-mono text-[11px] tracking-[0.12em] uppercase text-muted-foreground">
             {remainingForFreeDelivery > 0 ? (
               <>
@@ -83,7 +83,7 @@ export function CartDrawer() {
               </span>
             )}
           </p>
-          <div className="mt-3 h-1.5 w-full bg-muted">
+          <div className="mt-2 h-1.5 w-full bg-muted">
             <div
               className="h-full bg-foreground transition-all duration-500"
               style={{ width: `${freeDeliveryProgress}%` }}
@@ -104,7 +104,7 @@ export function CartDrawer() {
               {lines.map((line) => (
                 <li
                   key={line.product.id}
-                  className="flex gap-4 border-b border-border px-6 py-5"
+                  className="flex gap-3 border-b border-border px-6 py-[14px]"
                 >
                   <div className="relative h-20 w-20 shrink-0 border border-border bg-muted">
                     <Image
@@ -153,7 +153,7 @@ export function CartDrawer() {
                       </button>
                     </div>
 
-                    <div className="mt-auto flex items-center justify-between pt-3">
+                    <div className="mt-auto flex items-center justify-between pt-2">
                       <div className="flex items-center border border-border">
                         <button
                           type="button"
@@ -188,7 +188,7 @@ export function CartDrawer() {
 
         {lines.length > 0 && (
           <>
-          <div className="flex items-center gap-3 border-t border-border px-6 py-4">
+          <div className="flex items-center gap-3 border-t border-border px-6 py-3">
               <input
                 type="text"
                 value={postalCode}
@@ -198,7 +198,7 @@ export function CartDrawer() {
                 inputMode="text"
                 maxLength={7}
                 aria-label="Delivery postal code"
-                className="h-[38px] w-[112px] shrink-0 border border-border bg-background px-3 font-mono text-[13.33px] tracking-[0.15em] uppercase outline-none transition-colors placeholder:text-muted-foreground placeholder:normal-case placeholder:tracking-normal focus:border-foreground"
+                className="h-[38px] w-[116px] shrink-0 border border-border bg-background px-3 font-mono text-[13.33px] tracking-[0.15em] uppercase outline-none transition-colors placeholder:text-muted-foreground placeholder:normal-case placeholder:tracking-normal focus:border-foreground"
               />
               <p
                 aria-live="polite"
@@ -218,8 +218,8 @@ export function CartDrawer() {
               </p>
           </div>
 
-          <div className="flex flex-col border-t border-border md:px-6 md:py-5">
-            <dl className="order-1 flex flex-col gap-2 px-6 pt-5 font-mono text-xs tracking-[0.1em] uppercase md:p-0">
+          <div className="flex flex-col border-t border-border md:px-6 md:py-4">
+            <dl className="order-1 flex flex-col gap-1.5 px-6 pt-4 font-mono text-xs tracking-[0.1em] uppercase md:p-0">
               <div className="flex items-center justify-between">
                 <dt className="text-muted-foreground">Subtotal</dt>
                 <dd className="tabular-nums">${subtotal.toFixed(2)}</dd>
@@ -240,7 +240,7 @@ export function CartDrawer() {
                 <dt className="text-muted-foreground">HST (13%)</dt>
                 <dd className="tabular-nums">${hst.toFixed(2)}</dd>
               </div>
-              <div className="mt-2 flex items-center justify-between border-t border-border pt-3 text-sm font-bold text-foreground">
+              <div className="mt-1 flex items-center justify-between border-t border-border pt-2 text-sm font-bold text-foreground">
                 <dt>Total</dt>
                 <dd className="tabular-nums">${total.toFixed(2)}</dd>
               </div>
@@ -248,11 +248,11 @@ export function CartDrawer() {
 
             <button
               type="button"
-              className="order-3 w-full bg-foreground py-4 font-mono text-[13.8px] font-bold tracking-[0.25em] uppercase text-background transition-transform hover:-translate-y-0.5 md:order-2 md:mt-5"
+              className="order-3 w-full bg-foreground py-4 font-mono text-[13.8px] font-bold tracking-[0.25em] uppercase text-background transition-transform hover:-translate-y-0.5 md:order-2 md:mt-4"
             >
               Proceed to Checkout
             </button>
-            <p className="order-2 px-6 pb-4 pt-3 text-center font-mono text-[10px] tracking-[0.15em] uppercase text-muted-foreground md:order-3 md:mt-3 md:p-0">
+            <p className="order-2 px-6 pb-1 pt-3 text-center font-mono text-[10px] tracking-[0.15em] uppercase text-muted-foreground md:order-3 md:mt-2 md:p-0">
               Secure checkout — powered by Stripe
             </p>
           </div>
