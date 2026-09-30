@@ -258,7 +258,11 @@ export function CartDrawer() {
                   return
                 }
               }}
-              className="order-3 w-full bg-foreground py-4 font-mono text-[13.8px] font-bold tracking-[0.25em] uppercase text-background transition-transform hover:-translate-y-0.5 aria-disabled:cursor-not-allowed aria-disabled:opacity-85 aria-disabled:hover:translate-y-0 md:order-2 md:mt-4"
+              className="order-3 w-full bg-foreground py-4 text-[13.8px] tracking-[0.1548em] uppercase text-background transition-transform hover:-translate-y-0.5 aria-disabled:cursor-not-allowed aria-disabled:opacity-85 aria-disabled:hover:translate-y-0 md:order-2 md:mt-4"
+              style={{
+                fontFamily: 'var(--font-google-sans-flex)',
+                fontVariationSettings: "'wght' 600, 'wdth' 105, 'GRAD' 62, 'ROND' 0, 'slnt' 0, 'opsz' 24",
+              }}
             >
               Proceed to Checkout
             </button>
