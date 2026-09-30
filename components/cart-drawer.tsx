@@ -1,7 +1,7 @@
 'use client'
 
 import Image from 'next/image'
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { Minus, Plus, X } from 'lucide-react'
 import { useCart } from '@/components/cart-context'
 import { FLAT_RATE_DELIVERY } from '@/lib/products'
@@ -16,6 +16,8 @@ function formatPostalCode(value: string) {
 export function CartDrawer() {
   const [postalCode, setPostalCode] = useState('')
   const postalResult = postalCode.length === 7 ? checkPostalCode(postalCode) : null
+  const canCheckout = postalResult?.deliverable === true
+  const postalInputRef = useRef<HTMLInputElement>(null)
 
   const {
     lines,
@@ -190,6 +192,7 @@ export function CartDrawer() {
           <>
           <div className="flex items-center gap-3 border-t border-border px-6 py-3">
               <input
+                ref={postalInputRef}
                 type="text"
                 value={postalCode}
                 onChange={(e) => setPostalCode(formatPostalCode(e.target.value))}
@@ -248,7 +251,14 @@ export function CartDrawer() {
 
             <button
               type="button"
-              className="order-3 w-full bg-foreground py-4 font-mono text-[13.8px] font-bold tracking-[0.25em] uppercase text-background transition-transform hover:-translate-y-0.5 md:order-2 md:mt-4"
+              aria-disabled={!canCheckout}
+              onClick={() => {
+                if (!canCheckout) {
+                  postalInputRef.current?.focus()
+                  return
+                }
+              }}
+              className="order-3 w-full bg-foreground py-4 font-mono text-[13.8px] font-bold tracking-[0.25em] uppercase text-background transition-transform hover:-translate-y-0.5 aria-disabled:cursor-not-allowed aria-disabled:opacity-85 aria-disabled:hover:translate-y-0 md:order-2 md:mt-4"
             >
               Proceed to Checkout
             </button>
