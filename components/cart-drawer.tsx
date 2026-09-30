@@ -1,11 +1,22 @@
 'use client'
 
 import Image from 'next/image'
+import { useState } from 'react'
 import { Minus, Plus, X } from 'lucide-react'
 import { useCart } from '@/components/cart-context'
 import { FLAT_RATE_DELIVERY } from '@/lib/products'
+import { checkPostalCode } from '@/lib/postal-check'
+
+// Uppercase, alphanumeric only, max 6 characters, shown as "A1A 1A1".
+function formatPostalCode(value: string) {
+  const cleaned = value.toUpperCase().replace(/[^A-Z0-9]/g, '').slice(0, 6)
+  return cleaned.length > 3 ? `${cleaned.slice(0, 3)} ${cleaned.slice(3)}` : cleaned
+}
 
 export function CartDrawer() {
+  const [postalCode, setPostalCode] = useState('')
+  const postalResult = postalCode.length === 7 ? checkPostalCode(postalCode) : null
+
   const {
     lines,
     isOpen,
@@ -176,6 +187,37 @@ export function CartDrawer() {
         </div>
 
         {lines.length > 0 && (
+          <>
+          <div className="flex items-center gap-3 border-t border-border px-6 py-4">
+              <input
+                type="text"
+                value={postalCode}
+                onChange={(e) => setPostalCode(formatPostalCode(e.target.value))}
+                placeholder="Postal Code"
+                autoComplete="postal-code"
+                inputMode="text"
+                maxLength={7}
+                aria-label="Delivery postal code"
+                className="h-[38px] w-[112px] shrink-0 border border-border bg-background px-3 font-mono text-[13.33px] tracking-[0.15em] uppercase outline-none transition-colors placeholder:text-muted-foreground placeholder:normal-case placeholder:tracking-normal focus:border-foreground"
+              />
+              <p
+                aria-live="polite"
+                className={`text-[10px] leading-snug tracking-[0.16em] uppercase ${
+                  postalResult ? 'text-foreground' : 'text-muted-foreground'
+                }`}
+                style={{
+                  fontFamily: 'var(--font-google-sans-flex)',
+                  fontVariationSettings: "'wght' 600, 'wdth' 105, 'GRAD' 40, 'ROND' 0, 'slnt' 0, 'opsz' 14",
+                }}
+              >
+                {postalResult
+                  ? postalResult.deliverable
+                    ? 'We deliver to your area'
+                    : postalResult.message
+                  : 'Enter your postal code to confirm delivery'}
+              </p>
+          </div>
+
           <div className="flex flex-col border-t border-border md:px-6 md:py-5">
             <dl className="order-1 flex flex-col gap-2 px-6 pt-5 font-mono text-xs tracking-[0.1em] uppercase md:p-0">
               <div className="flex items-center justify-between">
@@ -214,6 +256,7 @@ export function CartDrawer() {
               Secure checkout — powered by Stripe
             </p>
           </div>
+          </>
         )}
       </aside>
     </>
