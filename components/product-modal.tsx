@@ -73,7 +73,7 @@ export function ProductModal({ product, onClose }: { product: Product; onClose: 
                     fill
                     sizes="(max-width: 448px) 100vw, 448px"
                     className="object-cover"
-                    style={product.imageBrightness || product.imageBlur ? { filter: [product.imageBrightness && `brightness(${product.imageBrightness})`, product.imageBlur && `blur(${product.imageBlur}px)`].filter(Boolean).join(" ") } : undefined}
+                    style={product.imageBrightness ? { filter: `brightness(${product.imageBrightness})` } : undefined}
                   />
                 ) : (
                   <div className="absolute inset-0 bg-[#f3f1ec]" />

@@ -8,7 +8,6 @@
   image: string
   imageOverlay?: number
   imageBrightness?: number
-  imageBlur?: number
   secondaryImage?: string
   tertiaryImage?: string
   extendedDescription?: string
