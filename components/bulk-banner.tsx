@@ -10,7 +10,7 @@ export function BulkBanner() {
       <div className="mx-auto max-w-[1400px] px-4 py-16 md:px-8 md:py-20">
         <div className="flex flex-col gap-10 md:flex-row md:items-center md:justify-between">
           <div className="max-w-md">
-            <p className="font-mono text-[11px] tracking-[0.3em] uppercase text-background/80">
+            <p className="font-mono text-[12.33px] tracking-[0.24em] uppercase text-background/80">
               Stock Up
             </p>
             <h2 className="mt-1 text-4xl font-bold leading-[38px] tracking-tight text-balance md:text-5xl md:leading-none">

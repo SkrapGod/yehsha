@@ -73,7 +73,7 @@ export const products: Product[] = [
     description: 'Ginger, turmeric & vitamin C. A daily defense in a 2oz pour.',
     price: 17.99,
     packSize: 4,
-    image: '/products/shot-stamina-recovery.jpg',
+    image: '/products/shot-stamina-recovery-v2.jpg',
     imageOverlay: 0.06,
     imageBrightness: 1.05,
     collection: 'shots',

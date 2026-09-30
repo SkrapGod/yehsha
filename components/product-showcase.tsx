@@ -13,7 +13,7 @@ function CollectionHeader({
 }) {
   return (
     <div className="mb-10 border-b border-border pb-6">
-      <p className="font-mono text-[11px] font-normal tracking-[0.18em] uppercase text-muted-foreground md:text-[11.55px] md:font-[450] md:tracking-[0.3em]">
+      <p className="relative top-[2px] font-mono text-[11px] font-normal tracking-[0.18em] uppercase text-muted-foreground md:text-[11.55px] md:font-[450] md:tracking-[0.3em]">
         Collection {index}
       </p>
       <div className="mt-[5.1px] flex flex-col gap-[10.2px] md:mt-2 md:flex-row md:items-start md:justify-between md:gap-4">
