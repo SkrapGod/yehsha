@@ -41,9 +41,10 @@ export function ProductModal({ product, onClose }: { product: Product; onClose: 
         aria-hidden="true"
       />
 
-      <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+      <div className="fixed inset-0 z-50 flex items-center justify-center p-4" onClick={onClose}>
         <div
           className="flex max-h-full w-full max-w-md flex-col overflow-hidden border border-border bg-background text-foreground"
+          onClick={(e) => e.stopPropagation()}
           role="dialog"
           aria-modal="true"
           aria-label={`${product.name} — ${product.flavor}`}
