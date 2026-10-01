@@ -1,7 +1,7 @@
 'use client'
 
 import Image from 'next/image'
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 import { Minus, Plus, X } from 'lucide-react'
 import { useCart } from '@/components/cart-context'
 import { FLAT_RATE_DELIVERY } from '@/lib/products'
@@ -15,6 +15,8 @@ function formatPostalCode(value: string) {
 
 export function CartDrawer() {
   const postalInputRef = useRef<HTMLInputElement>(null)
+  const [checkingOut, setCheckingOut] = useState(false)
+  const [checkoutError, setCheckoutError] = useState<string | null>(null)
 
   const {
     lines,
@@ -37,6 +39,31 @@ export function CartDrawer() {
 
   const postalResult = postalCode.length === 7 ? checkPostalCode(postalCode) : null
   const canCheckout = postalResult?.deliverable === true
+
+  // The server re-checks everything (prices, availability, postal code) before creating the
+  // Stripe session, so this only sends ids, quantities and the postal code.
+  const startCheckout = async () => {
+    setCheckingOut(true)
+    setCheckoutError(null)
+    try {
+      const response = await fetch('/api/checkout', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          items: lines.map((line) => ({ id: line.product.id, quantity: line.quantity })),
+          postalCode,
+        }),
+      })
+      const data = await response.json().catch(() => null)
+      if (!response.ok || !data?.url) {
+        throw new Error(data?.error ?? 'We couldn’t start checkout. Please try again.')
+      }
+      window.location.href = data.url
+    } catch (error) {
+      setCheckoutError(error instanceof Error ? error.message : 'We couldn’t start checkout. Please try again.')
+      setCheckingOut(false)
+    }
+  }
 
   return (
     <>
@@ -254,11 +281,13 @@ export function CartDrawer() {
             <button
               type="button"
               aria-disabled={!canCheckout}
+              aria-busy={checkingOut}
               onClick={() => {
                 if (!canCheckout) {
                   postalInputRef.current?.focus()
                   return
                 }
+                if (!checkingOut) startCheckout()
               }}
               className="order-3 w-full bg-foreground py-4 text-[13.8px] tracking-[0.1548em] uppercase text-background transition-transform hover:-translate-y-0.5 aria-disabled:cursor-not-allowed aria-disabled:opacity-85 aria-disabled:hover:translate-y-0 md:order-2 md:mt-4"
               style={{
@@ -266,10 +295,10 @@ export function CartDrawer() {
                 fontVariationSettings: "'wght' 600, 'wdth' 105, 'GRAD' 62, 'ROND' 0, 'slnt' 0, 'opsz' 24",
               }}
             >
-              Proceed to Checkout
+              {checkingOut ? 'Redirecting…' : 'Proceed to Checkout'}
             </button>
             <p className="order-2 px-6 pb-1 pt-3 text-center font-mono text-[10px] tracking-[0.15em] uppercase text-muted-foreground md:order-3 md:mt-2 md:p-0">
-              Secure checkout — powered by Stripe
+              {checkoutError ?? 'Secure checkout — powered by Stripe'}
             </p>
           </div>
           </>
