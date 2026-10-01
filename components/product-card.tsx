@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import Image from 'next/image'
 import { Minus, Plus } from 'lucide-react'
@@ -28,7 +28,7 @@ export function ProductCard({ product }: { product: Product }) {
         {available ? (
           <Image
             src={product.image || '/placeholder.svg'}
-            alt={`${product.name} — ${product.flavor}`}
+            alt={`${product.name} â€” ${product.flavor}`}
             fill
             sizes="(max-width: 768px) 100vw, 33vw"
             className="object-cover transition-transform duration-500 md:group-hover:scale-105"
@@ -43,11 +43,11 @@ export function ProductCard({ product }: { product: Product }) {
             style={{ backgroundColor: `rgba(0,0,0,${product.imageOverlay ?? 0.1})` }}
           />
         )}
-        <span className="absolute left-0 top-0 bg-[#121110] px-3 py-1.5 font-mono text-[11px] tracking-[0.2em] uppercase text-[#f7f5f1]">
+        <span className="absolute left-0 top-0 bg-[#121110] px-3 py-1.5 font-sans text-[11px] tracking-[0.2em] uppercase text-[#f7f5f1]">
           {product.batch}
         </span>
         {!available && (
-          <span className="absolute right-0 top-0 bg-[#121110] px-3 py-1.5 font-mono text-[11px] tracking-[0.2em] uppercase text-[#f7f5f1]">
+          <span className="absolute right-0 top-0 bg-[#121110] px-3 py-1.5 font-sans text-[11px] tracking-[0.2em] uppercase text-[#f7f5f1]">
             Sold Out
           </span>
         )}
@@ -56,14 +56,9 @@ export function ProductCard({ product }: { product: Product }) {
       <div className="flex flex-1 flex-col p-5">
         <div className="flex items-start justify-between gap-4">
           <div>
-            {product.collection === 'electrolyte' && (
-              <p className="relative -top-px font-mono text-[11.33px] tracking-[0.12em] uppercase text-[#f7f5f1]">
-                YEHSHA
-              </p>
-            )}
             <h3
               className={`whitespace-pre-line text-[22.67px] tracking-[-0.04em] ${
-                product.collection === 'shots' ? '-mt-0.5 leading-none' : '-mt-[6px] leading-tight'
+                product.collection === 'shots' ? '-mt-0.5 leading-none' : '-mt-[5px] leading-tight'
               }`}
               style={{
                 fontFamily: 'var(--font-google-sans-flex)',
@@ -75,7 +70,7 @@ export function ProductCard({ product }: { product: Product }) {
             {product.packSize && (
               <p
                 className={`ml-0.5 text-[10px] tracking-[0.2em] text-[#f7f5f1] ${
-                  product.collection === 'shots' ? 'mt-0' : '-mt-1'
+                  product.collection === 'shots' ? 'mt-px' : '-mt-[2px]'
                 }`}
                 style={{
                   fontFamily: 'var(--font-google-sans-flex)',
@@ -87,35 +82,39 @@ export function ProductCard({ product }: { product: Product }) {
             )}
           </div>
           <p
-            className={`font-mono text-[14.67px] font-bold whitespace-nowrap lg:text-[16px] ${
-              product.collection === 'electrolyte' ? 'mt-1' : 'mt-0.5'
-            }`}
+            className="-mt-[6px] font-sans md:-mt-[4px] text-[14.67px] font-bold whitespace-nowrap lg:text-[16px]"
           >
             ${product.price.toFixed(2)}
           </p>
         </div>
 
-        <p className="mt-2 font-sans text-[15.33px] leading-snug text-[#f7f5f1]/75">
+        <p className="mt-2 font-sans text-[15.33px] leading-snug text-white/95">
           {product.description}
         </p>
 
         <div className="mt-auto flex items-stretch gap-3 pt-6" onClick={(e) => e.stopPropagation()}>
-          <div className="flex items-center border border-[#f7f5f1]/40">
+          <div className="my-px mr-px flex items-center border border-white text-white">
             <button
               type="button"
               onClick={() => (available ? setQuantity((q) => Math.max(1, q - 1)) : revealSoldOut())}
-              className="flex h-11 w-10 items-center justify-center transition-colors hover:bg-[#f7f5f1] hover:text-[#121110]"
+              className="flex h-[42px] w-10 items-center justify-center transition-colors hover:bg-[#f7f5f1] hover:text-[#121110]"
               aria-label={`Decrease quantity of ${product.flavor}`}
             >
               <Minus className="h-3.5 w-3.5" />
             </button>
-            <span className="flex h-11 w-10 items-center justify-center font-mono text-sm tabular-nums">
+            <span
+              className="flex h-[42px] w-[38px] items-center justify-center text-[14px] tracking-[0.08em] tabular-nums"
+              style={{
+                fontFamily: 'var(--font-google-sans-flex)',
+                fontVariationSettings: "'wght' 600, 'wdth' 105, 'GRAD' 40, 'ROND' 0, 'slnt' 0, 'opsz' 14",
+              }}
+            >
               {quantity}
             </span>
             <button
               type="button"
               onClick={() => (available ? setQuantity((q) => q + 1) : revealSoldOut())}
-              className="flex h-11 w-10 items-center justify-center transition-colors hover:bg-[#f7f5f1] hover:text-[#121110]"
+              className="flex h-[42px] w-10 items-center justify-center transition-colors hover:bg-[#f7f5f1] hover:text-[#121110]"
               aria-label={`Increase quantity of ${product.flavor}`}
             >
               <Plus className="h-3.5 w-3.5" />
@@ -132,7 +131,11 @@ export function ProductCard({ product }: { product: Product }) {
               addItem(product, quantity)
               setQuantity(1)
             }}
-            className="flex-1 border border-[#fbfaf8] bg-[#fbfaf8] px-4 font-mono text-[13.33px] font-bold tracking-[0.12em] uppercase text-[#121110] transition-colors hover:bg-[#121110] hover:text-[#fbfaf8]"
+            className="my-px ml-px flex-1 border border-white bg-white px-4 text-[13px] tracking-[0.06em] uppercase text-[#121110] transition-colors hover:border-white hover:bg-[#121110] hover:text-white"
+            style={{
+              fontFamily: 'var(--font-google-sans-flex)',
+              fontVariationSettings: "'wght' 600, 'wdth' 105, 'GRAD' 40, 'ROND' 0, 'slnt' 0, 'opsz' 14",
+            }}
           >
             {justRevealed ? 'Sold Out' : 'Add to Cart'}
           </button>

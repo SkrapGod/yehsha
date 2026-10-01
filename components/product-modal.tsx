@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import Image from 'next/image'
 import { ChevronLeft, ChevronRight, Minus, Plus, X } from 'lucide-react'
@@ -47,7 +47,7 @@ export function ProductModal({ product, onClose }: { product: Product; onClose: 
           onClick={(e) => e.stopPropagation()}
           role="dialog"
           aria-modal="true"
-          aria-label={`${product.name} — ${product.flavor}`}
+          aria-label={`${product.name} â€” ${product.flavor}`}
         >
           <div
             className="relative aspect-square max-h-[42dvh] shrink-0 touch-pan-y overflow-hidden border-b border-border bg-muted"
@@ -70,7 +70,7 @@ export function ProductModal({ product, onClose }: { product: Product; onClose: 
                 {available ? (
                   <Image
                     src={product.image || '/placeholder.svg'}
-                    alt={`${product.name} — ${product.flavor}`}
+                    alt={`${product.name} â€” ${product.flavor}`}
                     fill
                     sizes="(max-width: 448px) 100vw, 448px"
                     className="object-cover"
@@ -90,7 +90,7 @@ export function ProductModal({ product, onClose }: { product: Product; onClose: 
                 {product.secondaryImage && (
                   <Image
                     src={product.secondaryImage}
-                    alt={`${product.name} — ${product.flavor}, alternate view`}
+                    alt={`${product.name} â€” ${product.flavor}, alternate view`}
                     fill
                     sizes="(max-width: 448px) 100vw, 448px"
                     className="object-cover"
@@ -101,7 +101,7 @@ export function ProductModal({ product, onClose }: { product: Product; onClose: 
                 {product.tertiaryImage && (
                   <Image
                     src={product.tertiaryImage}
-                    alt={`${product.name} — ${product.flavor}, alternate view`}
+                    alt={`${product.name} â€” ${product.flavor}, alternate view`}
                     fill
                     sizes="(max-width: 448px) 100vw, 448px"
                     className="object-cover"
@@ -110,11 +110,11 @@ export function ProductModal({ product, onClose }: { product: Product; onClose: 
               </div>
             </div>
 
-            <span className="absolute left-0 top-0 bg-foreground px-3 py-1.5 font-mono text-[11px] tracking-[0.2em] uppercase text-background">
+            <span className="absolute left-0 top-0 bg-background px-3 py-1.5 font-sans text-[11px] tracking-[0.2em] uppercase text-foreground">
               {product.batch}
             </span>
             {!available && (
-              <span className="absolute right-0 top-0 bg-foreground px-3 py-1.5 font-mono text-[11px] tracking-[0.2em] uppercase text-background">
+              <span className="absolute right-0 top-0 bg-background px-3 py-1.5 font-sans text-[11px] tracking-[0.2em] uppercase text-foreground">
                 Sold Out
               </span>
             )}
@@ -163,17 +163,9 @@ export function ProductModal({ product, onClose }: { product: Product; onClose: 
           <div className="flex flex-1 flex-col p-5">
             <div className="flex items-start justify-between gap-4">
               <div>
-                {product.collection === 'electrolyte' && (
-                  <p
-                    className="relative -top-px font-mono text-[11.33px] tracking-[0.12em] uppercase"
-                    style={{ color: 'oklch(0.216 0 0)' }}
-                  >
-                    YEHSHA
-                  </p>
-                )}
                 <h3
                   className={`whitespace-pre-line text-[22.67px] tracking-[-0.02em] ${
-                    product.collection === 'shots' ? '-mt-0.5 leading-none' : '-mt-[6px] leading-tight'
+                    product.collection === 'shots' ? '-mt-0.5 leading-none' : '-mt-[5px] leading-tight'
                   }`}
                   style={{
                     fontFamily: 'var(--font-google-sans-flex)',
@@ -185,7 +177,7 @@ export function ProductModal({ product, onClose }: { product: Product; onClose: 
                 {product.packSize && (
                   <p
                     className={`ml-0.5 text-[10px] tracking-[0.2em] text-foreground ${
-                      product.collection === 'shots' ? 'mt-0' : '-mt-1'
+                      product.collection === 'shots' ? 'mt-px' : '-mt-[2px]'
                     }`}
                     style={{
                       fontFamily: 'var(--font-google-sans-flex)',
@@ -196,16 +188,12 @@ export function ProductModal({ product, onClose }: { product: Product; onClose: 
                   </p>
                 )}
               </div>
-              <p
-                className={`font-mono text-[14.67px] font-bold whitespace-nowrap lg:text-[16px] ${
-                  product.collection === 'electrolyte' ? 'mt-1' : 'mt-0.5'
-                }`}
-              >
+              <p className="-mt-[6px] font-sans md:-mt-[4px] text-[14.67px] font-bold whitespace-nowrap lg:text-[16px]">
                 ${product.price.toFixed(2)}
               </p>
             </div>
 
-            <p className="mt-2 font-sans text-[15.33px] leading-snug text-muted-foreground">
+            <p className="mt-2 font-sans text-[15.33px] leading-snug text-foreground/95">
               {product.description}
             </p>
 
@@ -214,22 +202,28 @@ export function ProductModal({ product, onClose }: { product: Product; onClose: 
             </p>
 
             <div className="mt-auto flex items-stretch gap-3 pt-4" onClick={(e) => e.stopPropagation()}>
-              <div className="flex items-center border border-border">
+              <div className="my-px mr-px flex items-center border border-foreground text-foreground">
                 <button
                   type="button"
                   onClick={() => (available ? setQuantity((q) => Math.max(1, q - 1)) : revealSoldOut())}
-                  className="flex h-11 w-10 items-center justify-center transition-colors hover:bg-foreground hover:text-background"
+                  className="flex h-[42px] w-10 items-center justify-center transition-colors hover:bg-foreground hover:text-background"
                   aria-label={`Decrease quantity of ${product.flavor}`}
                 >
                   <Minus className="h-3.5 w-3.5" />
                 </button>
-                <span className="flex h-11 w-10 items-center justify-center font-mono text-sm tabular-nums">
+                <span
+                  className="flex h-[42px] w-[38px] items-center justify-center text-[14px] tracking-[0.08em] tabular-nums"
+                  style={{
+                    fontFamily: 'var(--font-google-sans-flex)',
+                    fontVariationSettings: "'wght' 600, 'wdth' 105, 'GRAD' 40, 'ROND' 0, 'slnt' 0, 'opsz' 14",
+                  }}
+                >
                   {quantity}
                 </span>
                 <button
                   type="button"
                   onClick={() => (available ? setQuantity((q) => q + 1) : revealSoldOut())}
-                  className="flex h-11 w-10 items-center justify-center transition-colors hover:bg-foreground hover:text-background"
+                  className="flex h-[42px] w-10 items-center justify-center transition-colors hover:bg-foreground hover:text-background"
                   aria-label={`Increase quantity of ${product.flavor}`}
                 >
                   <Plus className="h-3.5 w-3.5" />
@@ -246,7 +240,11 @@ export function ProductModal({ product, onClose }: { product: Product; onClose: 
                   addItem(product, quantity)
                   setQuantity(1)
                 }}
-                className="flex-1 border border-foreground bg-foreground px-4 font-mono text-[13.33px] font-bold tracking-[0.12em] uppercase text-background transition-colors hover:bg-background hover:text-foreground"
+                className="my-px ml-px flex-1 border border-foreground bg-foreground px-4 text-[13px] tracking-[0.06em] uppercase text-background transition-colors hover:bg-background hover:text-foreground"
+                style={{
+                  fontFamily: 'var(--font-google-sans-flex)',
+                  fontVariationSettings: "'wght' 600, 'wdth' 105, 'GRAD' 40, 'ROND' 0, 'slnt' 0, 'opsz' 14",
+                }}
               >
                 {justRevealed ? 'Sold Out' : 'Add to Cart'}
               </button>
