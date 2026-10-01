@@ -188,7 +188,7 @@ export function ProductModal({ product, onClose }: { product: Product; onClose: 
                   </p>
                 )}
               </div>
-              <p className="-mt-[6px] font-sans md:-mt-[4px] text-[14.67px] font-bold whitespace-nowrap lg:text-[16px]">
+              <p className="-mt-[6px] font-sans md:-mt-[4px] lg:-mt-px lg:mr-px text-[14.67px] font-bold whitespace-nowrap lg:text-[16px]">
                 ${product.price.toFixed(2)}
               </p>
             </div>
@@ -215,7 +215,7 @@ export function ProductModal({ product, onClose }: { product: Product; onClose: 
                   className="flex h-[42px] w-[38px] items-center justify-center text-[14px] tracking-[0.08em] tabular-nums"
                   style={{
                     fontFamily: 'var(--font-google-sans-flex)',
-                    fontVariationSettings: "'wght' 600, 'wdth' 105, 'GRAD' 40, 'ROND' 0, 'slnt' 0, 'opsz' 14",
+                    fontVariationSettings: "'wght' 550, 'wdth' 105, 'GRAD' 40, 'ROND' 0, 'slnt' 0, 'opsz' 14",
                   }}
                 >
                   {quantity}
@@ -246,7 +246,14 @@ export function ProductModal({ product, onClose }: { product: Product; onClose: 
                   fontVariationSettings: "'wght' 600, 'wdth' 105, 'GRAD' 40, 'ROND' 0, 'slnt' 0, 'opsz' 14",
                 }}
               >
-                {justRevealed ? 'Sold Out' : 'Add to Cart'}
+                {justRevealed ? (
+  'Sold Out'
+) : (
+  <>
+    Add to <span style={{ marginRight: '-0.04em' }}>C</span>
+    <span style={{ marginRight: '-0.04em' }}>a</span>rt
+  </>
+)}
               </button>
             </div>
           </div>

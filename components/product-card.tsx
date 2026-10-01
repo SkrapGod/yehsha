@@ -82,7 +82,7 @@ export function ProductCard({ product }: { product: Product }) {
             )}
           </div>
           <p
-            className="-mt-[6px] font-sans md:-mt-[4px] text-[14.67px] font-bold whitespace-nowrap lg:text-[16px]"
+            className="-mt-[6px] font-sans md:-mt-[4px] lg:-mt-px lg:mr-px text-[14.67px] font-bold whitespace-nowrap lg:text-[16px]"
           >
             ${product.price.toFixed(2)}
           </p>
@@ -93,11 +93,11 @@ export function ProductCard({ product }: { product: Product }) {
         </p>
 
         <div className="mt-auto flex items-stretch gap-3 pt-6" onClick={(e) => e.stopPropagation()}>
-          <div className="my-px mr-px flex items-center border border-white text-white">
+          <div className="my-px mr-px flex items-center border border-white text-white lg:shrink-0 lg:basis-[35.7%]">
             <button
               type="button"
               onClick={() => (available ? setQuantity((q) => Math.max(1, q - 1)) : revealSoldOut())}
-              className="flex h-[42px] w-10 items-center justify-center transition-colors hover:bg-[#f7f5f1] hover:text-[#121110]"
+              className="flex h-[42px] w-10 items-center justify-center transition-colors lg:w-auto lg:flex-1 hover:bg-[#f7f5f1] hover:text-[#121110]"
               aria-label={`Decrease quantity of ${product.flavor}`}
             >
               <Minus className="h-3.5 w-3.5" />
@@ -106,7 +106,7 @@ export function ProductCard({ product }: { product: Product }) {
               className="flex h-[42px] w-[38px] items-center justify-center text-[14px] tracking-[0.08em] tabular-nums"
               style={{
                 fontFamily: 'var(--font-google-sans-flex)',
-                fontVariationSettings: "'wght' 600, 'wdth' 105, 'GRAD' 40, 'ROND' 0, 'slnt' 0, 'opsz' 14",
+                fontVariationSettings: "'wght' 550, 'wdth' 105, 'GRAD' 40, 'ROND' 0, 'slnt' 0, 'opsz' 14",
               }}
             >
               {quantity}
@@ -114,7 +114,7 @@ export function ProductCard({ product }: { product: Product }) {
             <button
               type="button"
               onClick={() => (available ? setQuantity((q) => q + 1) : revealSoldOut())}
-              className="flex h-[42px] w-10 items-center justify-center transition-colors hover:bg-[#f7f5f1] hover:text-[#121110]"
+              className="flex h-[42px] w-10 items-center justify-center transition-colors lg:w-auto lg:flex-1 hover:bg-[#f7f5f1] hover:text-[#121110]"
               aria-label={`Increase quantity of ${product.flavor}`}
             >
               <Plus className="h-3.5 w-3.5" />
@@ -134,10 +134,17 @@ export function ProductCard({ product }: { product: Product }) {
             className="my-px ml-px flex-1 border border-white bg-white px-4 text-[13px] tracking-[0.06em] uppercase text-[#121110] transition-colors hover:border-white hover:bg-[#121110] hover:text-white"
             style={{
               fontFamily: 'var(--font-google-sans-flex)',
-              fontVariationSettings: "'wght' 600, 'wdth' 105, 'GRAD' 40, 'ROND' 0, 'slnt' 0, 'opsz' 14",
+              fontVariationSettings: "'wght' 650, 'wdth' 105, 'GRAD' 40, 'ROND' 0, 'slnt' 0, 'opsz' 14",
             }}
           >
-            {justRevealed ? 'Sold Out' : 'Add to Cart'}
+            {justRevealed ? (
+  'Sold Out'
+) : (
+  <>
+    Add to <span style={{ marginRight: '-0.04em' }}>C</span>
+    <span style={{ marginRight: '-0.04em' }}>a</span>rt
+  </>
+)}
           </button>
         </div>
       </div>
