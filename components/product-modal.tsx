@@ -43,14 +43,14 @@ export function ProductModal({ product, onClose }: { product: Product; onClose: 
 
       <div className="fixed inset-0 z-50 flex items-center justify-center p-4" onClick={onClose}>
         <div
-          className="flex max-h-full w-full max-w-md flex-col overflow-hidden border-[2px] border-[#121110] bg-[#121110] text-[#f7f5f1]"
+          className="flex max-h-full w-full max-w-md flex-col overflow-hidden border border-border bg-background text-foreground"
           onClick={(e) => e.stopPropagation()}
           role="dialog"
           aria-modal="true"
           aria-label={`${product.name} — ${product.flavor}`}
         >
           <div
-            className="relative aspect-square max-h-[42dvh] shrink-0 touch-pan-y overflow-hidden border-b border-[#121110] bg-muted"
+            className="relative aspect-square max-h-[42dvh] shrink-0 touch-pan-y overflow-hidden border-b border-border bg-muted"
             onTouchStart={(e) => {
               touchStartX.current = e.touches[0].clientX
             }}
@@ -110,11 +110,11 @@ export function ProductModal({ product, onClose }: { product: Product; onClose: 
               </div>
             </div>
 
-            <span className="absolute left-0 top-0 bg-[#121110] px-3 py-1.5 font-sans text-[11px] tracking-[0.2em] uppercase text-[#f7f5f1]">
+            <span className="absolute left-0 top-0 bg-background px-3 py-1.5 font-sans text-[11px] tracking-[0.2em] uppercase text-foreground">
               {product.batch}
             </span>
             {!available && (
-              <span className="absolute right-0 top-0 bg-[#121110] px-3 py-1.5 font-sans text-[11px] tracking-[0.2em] uppercase text-[#f7f5f1]">
+              <span className="absolute right-0 top-0 bg-background px-3 py-1.5 font-sans text-[11px] tracking-[0.2em] uppercase text-foreground">
                 Sold Out
               </span>
             )}
@@ -122,7 +122,7 @@ export function ProductModal({ product, onClose }: { product: Product; onClose: 
             <button
               type="button"
               onClick={onClose}
-              className="absolute right-3 top-3 flex h-8 w-8 items-center justify-center border border-[#121110] bg-[#121110] text-[#f7f5f1] transition-colors hover:bg-[#f7f5f1] hover:text-[#121110]"
+              className="absolute right-3 top-3 flex h-8 w-8 items-center justify-center border border-border bg-background text-foreground transition-colors hover:bg-foreground hover:text-background"
               aria-label="Close"
             >
               <X className="h-4 w-4" />
@@ -131,7 +131,7 @@ export function ProductModal({ product, onClose }: { product: Product; onClose: 
             <button
               type="button"
               onClick={() => goTo(slide - 1)}
-              className="absolute left-2 top-1/2 hidden h-8 w-8 -translate-y-1/2 items-center justify-center border border-[#121110] bg-[#121110]/90 text-[#f7f5f1] transition-colors lg:flex hover:bg-[#f7f5f1] hover:text-[#121110]"
+              className="absolute left-2 top-1/2 hidden h-8 w-8 -translate-y-1/2 items-center justify-center border border-border bg-background/90 text-foreground transition-colors lg:flex hover:bg-foreground hover:text-background"
               aria-label="Previous image"
             >
               <ChevronLeft className="h-4 w-4" />
@@ -139,7 +139,7 @@ export function ProductModal({ product, onClose }: { product: Product; onClose: 
             <button
               type="button"
               onClick={() => goTo(slide + 1)}
-              className="absolute right-2 top-1/2 hidden h-8 w-8 -translate-y-1/2 items-center justify-center border border-[#121110] bg-[#121110]/90 text-[#f7f5f1] transition-colors lg:flex hover:bg-[#f7f5f1] hover:text-[#121110]"
+              className="absolute right-2 top-1/2 hidden h-8 w-8 -translate-y-1/2 items-center justify-center border border-border bg-background/90 text-foreground transition-colors lg:flex hover:bg-foreground hover:text-background"
               aria-label="Next image"
             >
               <ChevronRight className="h-4 w-4" />
@@ -176,7 +176,7 @@ export function ProductModal({ product, onClose }: { product: Product; onClose: 
                 </h3>
                 {product.packSize && (
                   <p
-                    className={`ml-0.5 text-[10px] tracking-[0.2em] text-[#f7f5f1] ${
+                    className={`ml-0.5 text-[10px] tracking-[0.2em] text-foreground ${
                       product.collection === 'shots' ? 'mt-px' : '-mt-[2px]'
                     }`}
                     style={{
@@ -193,20 +193,20 @@ export function ProductModal({ product, onClose }: { product: Product; onClose: 
               </p>
             </div>
 
-            <p className="mt-2 font-sans text-[15.33px] leading-snug text-white/95">
+            <p className="mt-2 font-sans text-[15.33px] leading-snug text-foreground/95">
               {product.description}
             </p>
 
-            <p className="mt-[7.2px] font-sans text-sm leading-relaxed text-white/70">
+            <p className="mt-[7.2px] font-sans text-sm leading-relaxed text-muted-foreground">
               {product.extendedDescription || product.description}
             </p>
 
             <div className="mt-auto flex items-stretch gap-3 pt-4" onClick={(e) => e.stopPropagation()}>
-              <div className="my-px mr-px flex items-center border border-white text-white lg:shrink-0 lg:basis-[35.7%]">
+              <div className="my-px mr-px flex items-center border border-foreground text-foreground lg:shrink-0 lg:basis-[35.7%]">
                 <button
                   type="button"
                   onClick={() => (available ? setQuantity((q) => Math.max(1, q - 1)) : revealSoldOut())}
-                  className="flex h-[42px] w-9 items-center justify-center transition-colors md:w-10 lg:w-auto lg:flex-1 hover:bg-[#f7f5f1] hover:text-[#121110]"
+                  className="flex h-[42px] w-9 items-center justify-center transition-colors md:w-10 lg:w-auto lg:flex-1 hover:bg-foreground hover:text-background"
                   aria-label={`Decrease quantity of ${product.flavor}`}
                 >
                   <Minus className="h-3.5 w-3.5" />
@@ -223,7 +223,7 @@ export function ProductModal({ product, onClose }: { product: Product; onClose: 
                 <button
                   type="button"
                   onClick={() => (available ? setQuantity((q) => q + 1) : revealSoldOut())}
-                  className="flex h-[42px] w-9 items-center justify-center transition-colors md:w-10 lg:w-auto lg:flex-1 hover:bg-[#f7f5f1] hover:text-[#121110]"
+                  className="flex h-[42px] w-9 items-center justify-center transition-colors md:w-10 lg:w-auto lg:flex-1 hover:bg-foreground hover:text-background"
                   aria-label={`Increase quantity of ${product.flavor}`}
                 >
                   <Plus className="h-3.5 w-3.5" />
@@ -240,11 +240,8 @@ export function ProductModal({ product, onClose }: { product: Product; onClose: 
                   addItem(product, quantity)
                   setQuantity(1)
                 }}
-                className="my-px ml-px flex-1 border border-white bg-white px-4 text-[13px] tracking-[0.06em] uppercase text-[#121110] transition-colors hover:border-white hover:bg-[#121110] hover:text-white"
-                style={{
-                  fontFamily: 'var(--font-google-sans-flex)',
-                  fontVariationSettings: "'wght' 650, 'wdth' 105, 'GRAD' 40, 'ROND' 0, 'slnt' 0, 'opsz' 14",
-                }}
+                className="my-px ml-px flex-1 border border-foreground bg-foreground px-4 text-[13px] tracking-[0.06em] uppercase text-background transition-colors [font-variation-settings:'wght'_600,'wdth'_105,'GRAD'_40,'ROND'_0,'slnt'_0,'opsz'_14] hover:bg-background hover:text-foreground hover:[font-variation-settings:'wght'_650,'wdth'_105,'GRAD'_40,'ROND'_0,'slnt'_0,'opsz'_14]"
+                style={{ fontFamily: 'var(--font-google-sans-flex)' }}
               >
                 {justRevealed ? (
   'Sold Out'
