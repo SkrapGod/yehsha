@@ -1,4 +1,4 @@
-﻿'use client'
+'use client'
 
 import Image from 'next/image'
 import { Minus, Plus } from 'lucide-react'
@@ -28,7 +28,7 @@ export function ProductCard({ product }: { product: Product }) {
         {available ? (
           <Image
             src={product.image || '/placeholder.svg'}
-            alt={`${product.name} â€” ${product.flavor}`}
+            alt={`${product.name} — ${product.flavor}`}
             fill
             sizes="(max-width: 768px) 100vw, 33vw"
             className="object-cover transition-transform duration-500 md:group-hover:scale-105"

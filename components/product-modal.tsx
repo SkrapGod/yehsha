@@ -1,4 +1,4 @@
-﻿'use client'
+'use client'
 
 import Image from 'next/image'
 import { ChevronLeft, ChevronRight, Minus, Plus, X } from 'lucide-react'
@@ -47,7 +47,7 @@ export function ProductModal({ product, onClose }: { product: Product; onClose: 
           onClick={(e) => e.stopPropagation()}
           role="dialog"
           aria-modal="true"
-          aria-label={`${product.name} â€” ${product.flavor}`}
+          aria-label={`${product.name} — ${product.flavor}`}
         >
           <div
             className="relative aspect-square max-h-[42dvh] shrink-0 touch-pan-y overflow-hidden border-b border-border bg-muted"
@@ -70,7 +70,7 @@ export function ProductModal({ product, onClose }: { product: Product; onClose: 
                 {available ? (
                   <Image
                     src={product.image || '/placeholder.svg'}
-                    alt={`${product.name} â€” ${product.flavor}`}
+                    alt={`${product.name} — ${product.flavor}`}
                     fill
                     sizes="(max-width: 448px) 100vw, 448px"
                     className="object-cover"
@@ -90,7 +90,7 @@ export function ProductModal({ product, onClose }: { product: Product; onClose: 
                 {product.secondaryImage && (
                   <Image
                     src={product.secondaryImage}
-                    alt={`${product.name} â€” ${product.flavor}, alternate view`}
+                    alt={`${product.name} — ${product.flavor}, alternate view`}
                     fill
                     sizes="(max-width: 448px) 100vw, 448px"
                     className="object-cover"
@@ -101,7 +101,7 @@ export function ProductModal({ product, onClose }: { product: Product; onClose: 
                 {product.tertiaryImage && (
                   <Image
                     src={product.tertiaryImage}
-                    alt={`${product.name} â€” ${product.flavor}, alternate view`}
+                    alt={`${product.name} — ${product.flavor}, alternate view`}
                     fill
                     sizes="(max-width: 448px) 100vw, 448px"
                     className="object-cover"
