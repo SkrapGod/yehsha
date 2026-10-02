@@ -3,9 +3,98 @@
 import Image from 'next/image'
 import { ChevronLeft, ChevronRight, Minus, Plus, X } from 'lucide-react'
 import { useEffect, useRef, useState } from 'react'
+import type { CSSProperties } from 'react'
 import type { Product } from '@/lib/products'
 import { useCart } from '@/components/cart-context'
 import { nextQuantity, useMinusStep } from '@/lib/quantity'
+
+// The modal photo is shown zoomed in, at the same 1.05 the product cards use on hover, but never so far
+// that the bottle is cropped. The photo is sized from the window it sits in: it zooms until the bottle
+// would come within EDGE_MARGIN of the top or bottom, and on short screens it shrinks below "cover"
+// so the whole bottle stays in view, with a blurred copy of the backdrop filling any gap at the sides.
+const MODAL_ZOOM = 1.05
+const EDGE_MARGIN = 0.04
+
+function ModalPhoto({ product }: { product: Product }) {
+  const frame = useRef<HTMLDivElement>(null)
+  const [size, setSize] = useState<{ w: number; h: number } | null>(null)
+
+  useEffect(() => {
+    const el = frame.current
+    if (!el) return
+    const update = () => setSize({ w: el.clientWidth, h: el.clientHeight })
+    update()
+    const observer = new ResizeObserver(update)
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [])
+
+  const imageStyle = product.imageBrightness ? { filter: `brightness(${product.imageBrightness})` } : undefined
+  const alt = `${product.name} — ${product.flavor}`
+  const src = product.image || '/placeholder.svg'
+  const aspect = product.imageAspect
+  const bottle = product.bottle
+
+  let layout: { w: number; h: number; letterboxed: boolean; mask?: CSSProperties } | null = null
+  if (size && size.w > 0 && size.h > 0 && aspect && bottle) {
+    const margin = EDGE_MARGIN * size.h
+    const coverHeight = Math.max(size.h, size.w / aspect)
+    const room = size.h / 2 - margin
+    const fitHeight = Math.min(room / (bottle.bottom - 0.5), room / (0.5 - bottle.top))
+    const height = Math.min(coverHeight * MODAL_ZOOM, fitHeight)
+    const width = height * aspect
+    const gapSides = width < size.w - 0.5
+    const gapTopBottom = height < size.h - 0.5
+    // Feather any edge that doesn't reach the window edge, so the photo melts into the backdrop fill
+    // instead of ending on a hard line.
+    const fades: string[] = []
+    if (gapSides) fades.push('linear-gradient(to right, transparent 0, #000 14%, #000 86%, transparent 100%)')
+    if (gapTopBottom) fades.push('linear-gradient(to bottom, transparent 0, #000 14%, #000 86%, transparent 100%)')
+    const mask: CSSProperties | undefined = fades.length
+      ? {
+          maskImage: fades.join(', '),
+          WebkitMaskImage: fades.join(', '),
+          maskComposite: 'intersect',
+          WebkitMaskComposite: 'source-in',
+        }
+      : undefined
+    layout = { w: width, h: height, letterboxed: gapSides || gapTopBottom, mask }
+  }
+
+  return (
+    <div ref={frame} className="absolute inset-0 overflow-hidden">
+      {layout ? (
+        <>
+          {layout.letterboxed && (
+            <Image
+              src={src}
+              alt=""
+              aria-hidden="true"
+              fill
+              sizes="448px"
+              className="scale-125 object-cover blur-2xl"
+              style={imageStyle}
+            />
+          )}
+          <div
+            className="absolute"
+            style={{
+              width: layout.w,
+              height: layout.h,
+              left: (size!.w - layout.w) / 2,
+              top: (size!.h - layout.h) / 2,
+              ...layout.mask,
+            }}
+          >
+            <Image src={src} alt={alt} fill sizes="(max-width: 448px) 100vw, 448px" className="object-cover" style={imageStyle} />
+          </div>
+        </>
+      ) : (
+        <Image src={src} alt={alt} fill sizes="(max-width: 448px) 100vw, 448px" className="object-cover" style={imageStyle} />
+      )}
+    </div>
+  )
+}
 
 export function ProductModal({ product, onClose }: { product: Product; onClose: () => void }) {
   const [quantity, setQuantity] = useState(1)
@@ -70,14 +159,7 @@ export function ProductModal({ product, onClose }: { product: Product; onClose: 
             >
               <div className="relative h-full w-full shrink-0">
                 {available ? (
-                  <Image
-                    src={product.image || '/placeholder.svg'}
-                    alt={`${product.name} — ${product.flavor}`}
-                    fill
-                    sizes="(max-width: 448px) 100vw, 448px"
-                    className="object-cover"
-                    style={product.imageBrightness ? { filter: `brightness(${product.imageBrightness})` } : undefined}
-                  />
+                  <ModalPhoto product={product} />
                 ) : (
                   <div className="absolute inset-0 bg-[#f3f1ec]" />
                 )}
