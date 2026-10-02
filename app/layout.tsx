@@ -1,6 +1,6 @@
 import { Analytics } from '@vercel/analytics/next'
 import type { Metadata, Viewport } from 'next'
-import { Space_Grotesk, Space_Mono } from 'next/font/google'
+import { Space_Grotesk } from 'next/font/google'
 import localFont from 'next/font/local'
 import './globals.css'
 
@@ -13,13 +13,6 @@ const spaceGrotesk = Space_Grotesk({
 const googleSansFlex = localFont({
   src: './fonts/GoogleSansFlex-Latin.woff2',
   variable: '--font-google-sans-flex',
-  display: 'swap',
-})
-
-const spaceMono = Space_Mono({
-  subsets: ['latin'],
-  weight: ['400', '700'],
-  variable: '--font-space-mono',
   display: 'swap',
 })
 
@@ -41,7 +34,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={`light ${spaceGrotesk.variable} ${spaceMono.variable} ${googleSansFlex.variable}`}>
+    <html lang="en" className={`light ${spaceGrotesk.variable} ${googleSansFlex.variable}`}>
       <body className="font-sans antialiased bg-background text-foreground">
         {children}
         {process.env.NODE_ENV === 'production' && <Analytics />}

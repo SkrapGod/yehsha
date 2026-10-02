@@ -152,7 +152,7 @@ export function CartDrawer() {
                       <div>
                         <p
                           className="font-mono text-[10px] tracking-[0.09em] uppercase text-muted-foreground"
-                          style={{ wordSpacing: '-0.21em' }}
+                          style={{ wordSpacing: '0.1em' }}
                         >
                           {line.product.name}
                         </p>

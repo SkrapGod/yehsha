@@ -17,7 +17,7 @@ export function SiteHeader() {
   return (
     <header className="sticky top-0 z-40 border-border bg-background/90 backdrop-blur-md md:border-b">
       {/* Tablet and desktop header row — hidden on mobile */}
-      <div className="mx-auto hidden h-14 max-w-[1400px] items-center justify-between px-4 md:flex md:px-8">
+      <div className="mx-auto hidden h-14 max-w-[1400px] grid-cols-[1fr_auto_1fr] items-center px-4 md:grid md:px-8">
         <div className="flex items-center gap-3">
           <button
             type="button"
@@ -35,13 +35,13 @@ export function SiteHeader() {
           </a>
         </div>
 
-        <nav className="hidden items-center gap-[25.2px] md:flex" aria-label="Primary">
+        <nav className="hidden items-center gap-[30px] pl-[0.15em] text-[14.33px] md:flex" aria-label="Primary">
           {links.map((link) => (
             <a
               key={link.href}
               href={link.href}
               className="font-mono text-[14.33px] tracking-[0.15em] uppercase text-muted-foreground transition-colors hover:text-foreground"
-              style={link.label === 'Solace Shots' ? { wordSpacing: '-0.55em' } : undefined}
+              style={link.label === 'Solace Shots' ? { wordSpacing: '-0.15em' } : undefined}
             >
               {link.label}
             </a>
@@ -51,7 +51,7 @@ export function SiteHeader() {
         <button
           type="button"
           onClick={openCart}
-          className="relative flex items-center gap-2 border border-border px-3 py-2 transition-colors hover:bg-foreground hover:text-background"
+          className="relative flex items-center gap-2 justify-self-end border border-border px-3 py-2 transition-colors hover:bg-foreground hover:text-background"
           aria-label={`Open cart, ${itemCount} items`}
         >
           <ShoppingBag className="h-4 w-4" />
