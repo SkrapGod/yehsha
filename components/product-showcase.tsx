@@ -13,7 +13,7 @@ function CollectionHeader({
   subtitle: ReactNode
 }) {
   return (
-    <div className="mb-10 border-b-2 border-border pb-6 md:mb-14 lg:mb-[58px]">
+    <div className="mb-12 border-b-2 border-border pb-6 md:mb-16 lg:mb-[72px]">
       <p className="relative top-[2px] font-sans text-[12px] font-normal tracking-[calc(0.18em-1px)] uppercase text-muted-foreground md:text-[12.55px] md:tracking-[calc(0.3em-1px)]">
         Collection {index}
       </p>
@@ -50,7 +50,7 @@ export function ProductShowcase() {
             </>
           }
         />
-        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
+        <div className="grid grid-cols-1 gap-9 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
           {electrolytes.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}
@@ -65,7 +65,7 @@ export function ProductShowcase() {
           title="Solace Shots"
           subtitle="Functional 2oz wellness shots — targeted support for immunity, recovery, and energy."
         />
-        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
+        <div className="grid grid-cols-1 gap-9 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
           {shots.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}
