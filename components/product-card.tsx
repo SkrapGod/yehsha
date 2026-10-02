@@ -2,7 +2,7 @@
 
 import Image from 'next/image'
 import { Minus, Plus } from 'lucide-react'
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import type { Product } from '@/lib/products'
 import { useCart } from '@/components/cart-context'
 import { ProductModal } from '@/components/product-modal'
@@ -16,6 +16,22 @@ export function ProductCard({ product }: { product: Product }) {
   const stepDown = useMinusStep(quantity, setQuantity)
   const available = product.available !== false
 
+  // Phones have no hover, so below the md breakpoint the photo eases in a touch while its card is in
+  // the middle band of the screen and eases back out as it scrolls away (tablet and desktop keep hover).
+  const photoRef = useRef<HTMLDivElement>(null)
+  const [inView, setInView] = useState(false)
+  useEffect(() => {
+    const el = photoRef.current
+    if (!el || !available || typeof IntersectionObserver === 'undefined') return
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+    const io = new IntersectionObserver(([entry]) => setInView(entry.isIntersecting), {
+      rootMargin: '-30% 0px -30% 0px',
+      threshold: 0,
+    })
+    io.observe(el)
+    return () => io.disconnect()
+  }, [available])
+
   const revealSoldOut = () => {
     setJustRevealed(true)
     window.setTimeout(() => setJustRevealed(false), 1600)
@@ -26,14 +42,16 @@ export function ProductCard({ product }: { product: Product }) {
       className="group flex cursor-pointer flex-col border-[2px] border-[#121110] bg-[#121110] text-[#f7f5f1]"
       onClick={() => setModalOpen(true)}
     >
-      <div className="relative aspect-square overflow-hidden border-b border-[#121110] bg-muted">
+      <div ref={photoRef} className="relative aspect-square overflow-hidden border-b border-[#121110] bg-muted">
         {available ? (
           <Image
             src={product.image || '/placeholder.svg'}
             alt={`${product.name} — ${product.flavor}`}
             fill
             sizes="(max-width: 768px) 100vw, 33vw"
-            className="object-cover transition-transform duration-500 md:group-hover:scale-105"
+            className={`object-cover transition-transform duration-700 max-md:ease-out md:duration-500 md:group-hover:scale-105 ${
+              inView ? 'max-md:scale-105' : ''
+            }`}
             style={product.imageBrightness ? { filter: `brightness(${product.imageBrightness})` } : undefined}
           />
         ) : (
