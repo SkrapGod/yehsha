@@ -6,7 +6,7 @@ const facts = [
 
 export function AboutSection() {
   return (
-    <section id="about" className="border-y border-border">
+    <section id="about" className="border-b border-t-2 border-border">
       <div className="mx-auto max-w-[1400px] px-4 py-24 md:px-8 md:py-32">
         <div className="grid gap-12 md:grid-cols-2 md:gap-16">
           <div>
