@@ -5,12 +5,14 @@ import { ChevronLeft, ChevronRight, Minus, Plus, X } from 'lucide-react'
 import { useEffect, useRef, useState } from 'react'
 import type { Product } from '@/lib/products'
 import { useCart } from '@/components/cart-context'
+import { nextQuantity, useMinusStep } from '@/lib/quantity'
 
 export function ProductModal({ product, onClose }: { product: Product; onClose: () => void }) {
   const [quantity, setQuantity] = useState(1)
   const [justRevealed, setJustRevealed] = useState(false)
   const [slide, setSlide] = useState(0)
   const { addItem } = useCart()
+  const stepDown = useMinusStep(quantity, setQuantity)
   const available = product.available !== false
   const touchStartX = useRef<number | null>(null)
 
@@ -205,8 +207,8 @@ export function ProductModal({ product, onClose }: { product: Product; onClose: 
               <div className="my-px mr-px flex items-center border border-foreground text-foreground lg:shrink-0 lg:basis-[35.7%]">
                 <button
                   type="button"
-                  onClick={() => (available ? setQuantity((q) => Math.max(1, q - 1)) : revealSoldOut())}
-                  className="flex h-[42px] w-9 items-center justify-center transition-colors md:w-10 lg:w-auto lg:flex-1 hover:bg-foreground hover:text-background"
+                  onClick={() => (available ? stepDown() : revealSoldOut())}
+                  className="flex h-[42px] w-[34px] touch-manipulation items-center justify-center transition-colors md:w-10 lg:w-auto lg:flex-1 hover:bg-foreground hover:text-background"
                   aria-label={`Decrease quantity of ${product.flavor}`}
                 >
                   <Minus className="h-3.5 w-3.5" />
@@ -222,8 +224,8 @@ export function ProductModal({ product, onClose }: { product: Product; onClose: 
                 </span>
                 <button
                   type="button"
-                  onClick={() => (available ? setQuantity((q) => q + 1) : revealSoldOut())}
-                  className="flex h-[42px] w-9 items-center justify-center transition-colors md:w-10 lg:w-auto lg:flex-1 hover:bg-foreground hover:text-background"
+                  onClick={() => (available ? setQuantity(nextQuantity) : revealSoldOut())}
+                  className="flex h-[42px] w-[34px] touch-manipulation items-center justify-center transition-colors md:w-10 lg:w-auto lg:flex-1 hover:bg-foreground hover:text-background"
                   aria-label={`Increase quantity of ${product.flavor}`}
                 >
                   <Plus className="h-3.5 w-3.5" />

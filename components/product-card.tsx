@@ -6,12 +6,14 @@ import { useState } from 'react'
 import type { Product } from '@/lib/products'
 import { useCart } from '@/components/cart-context'
 import { ProductModal } from '@/components/product-modal'
+import { nextQuantity, useMinusStep } from '@/lib/quantity'
 
 export function ProductCard({ product }: { product: Product }) {
   const [quantity, setQuantity] = useState(1)
   const [justRevealed, setJustRevealed] = useState(false)
   const [modalOpen, setModalOpen] = useState(false)
   const { addItem } = useCart()
+  const stepDown = useMinusStep(quantity, setQuantity)
   const available = product.available !== false
 
   const revealSoldOut = () => {
@@ -96,8 +98,8 @@ export function ProductCard({ product }: { product: Product }) {
           <div className="my-px mr-px flex items-center border border-white text-white lg:shrink-0 lg:basis-[35.7%]">
             <button
               type="button"
-              onClick={() => (available ? setQuantity((q) => Math.max(1, q - 1)) : revealSoldOut())}
-              className="flex h-[42px] w-9 items-center justify-center transition-colors md:w-10 lg:w-auto lg:flex-1 hover:bg-[#f7f5f1] hover:text-[#121110]"
+              onClick={() => (available ? stepDown() : revealSoldOut())}
+              className="flex h-[42px] w-[34px] touch-manipulation items-center justify-center transition-colors md:w-10 lg:w-auto lg:flex-1 hover:bg-[#f7f5f1] hover:text-[#121110]"
               aria-label={`Decrease quantity of ${product.flavor}`}
             >
               <Minus className="h-3.5 w-3.5" />
@@ -113,8 +115,8 @@ export function ProductCard({ product }: { product: Product }) {
             </span>
             <button
               type="button"
-              onClick={() => (available ? setQuantity((q) => q + 1) : revealSoldOut())}
-              className="flex h-[42px] w-9 items-center justify-center transition-colors md:w-10 lg:w-auto lg:flex-1 hover:bg-[#f7f5f1] hover:text-[#121110]"
+              onClick={() => (available ? setQuantity(nextQuantity) : revealSoldOut())}
+              className="flex h-[42px] w-[34px] touch-manipulation items-center justify-center transition-colors md:w-10 lg:w-auto lg:flex-1 hover:bg-[#f7f5f1] hover:text-[#121110]"
               aria-label={`Increase quantity of ${product.flavor}`}
             >
               <Plus className="h-3.5 w-3.5" />
