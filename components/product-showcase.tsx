@@ -45,7 +45,7 @@ export function ProductShowcase() {
           title="Pure Hydration"
           subtitle={
             <>
-              No synthetics. Nothing artificial. Natural <br className="hidden md:block" />
+              No synthetics. Nothing artificial. All natural <br className="hidden md:block" />
               electrolytes, built to restore your baseline.
             </>
           }
