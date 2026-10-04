@@ -1,33 +1,48 @@
-const facts = [
-  { value: '1000mg', label: 'Electrolyte blend per bottle' },
-  { value: '0g', label: 'Added sugar, ever' },
-  { value: '48h', label: 'From batch to your door' },
+import type { ReactNode } from 'react'
+
+const facts: { value: ReactNode; label: string }[] = [
+  { value: '130mg', label: 'Clean electrolytes' },
+  { value: '0', label: 'Artificial ingredients' },
+  {
+    value: (
+      <span className="flex flex-col">
+        <span className="mb-1 text-base font-normal leading-none tracking-normal">Under</span>
+        <span className="leading-none">35</span>
+      </span>
+    ),
+    label: 'Calories per bottle',
+  },
 ]
 
 export function AboutSection() {
   return (
     <section id="about" className="border-b border-t-2 border-border">
       <div className="mx-auto max-w-[1400px] px-4 py-24 md:px-8 md:py-32">
-        <div className="grid gap-12 md:grid-cols-2 md:gap-16">
+        <div className="grid gap-12 lg:grid-cols-[auto_1fr] lg:gap-16">
           <div>
-            <p className="font-mono text-[11px] tracking-[0.3em] uppercase text-muted-foreground">
-              Our Mission
+            <p className="relative top-[2px] font-sans text-[12px] font-normal tracking-[calc(0.18em-1px)] uppercase text-muted-foreground md:text-[12.55px] md:tracking-[calc(0.3em-1px)]">
+              The Purpose
             </p>
-            <h2 className="mt-4 text-4xl font-bold leading-[1.05] tracking-tight text-balance md:text-6xl">
-              Hydration, <br /> stripped to what matters.
+            <h2
+              className="mt-[5.1px] text-4xl md:mt-2 leading-[calc(1em+2px)] tracking-tight text-balance md:text-6xl lg:text-5xl"
+              style={{
+                fontFamily: 'var(--font-google-sans-flex)',
+                fontVariationSettings: "'wght' 650, 'wdth' 105, 'GRAD' 40, 'ROND' 0, 'slnt' 0, 'opsz' 40",
+              }}
+            >
+              Stop Overthinking Health.<br className="hidden lg:block" /> Fix Your Hydration.
             </h2>
           </div>
 
-          <div className="flex flex-col justify-center gap-6 text-base leading-relaxed text-muted-foreground md:text-lg">
-            <p>
-              YEHSHA was built on a simple belief: your body deserves high-grade hydration without
-              the noise. No dyes, no sugar, no filler — just a precise mineral blend that helps you
-              come to life.
+          <div className="flex flex-col justify-start gap-2.5 text-base leading-[1.45] text-muted-foreground md:text-lg">
+            <p className="text-pretty">
+              <span className="font-medium text-foreground">YEHSHA — means to rescue.</span> From the synthetic dyes, the artificial sweeteners, the chemical
+              fillers. And from the flat, foggy days that come from poor hydration.
             </p>
-            <p>
-              Every bottle is produced locally in small batches and delivered fresh across the GTA,
-              Tri-Cities, and Guelph. Solace Shots extend that same standard into targeted daily
-              wellness.
+            <p className="text-pretty">
+              Crafted in small batches for people who read the label. Delivering pure, uncompromised
+              recovery when you need it most.
+              <span className="mt-1.5 block font-medium text-foreground">Come to Life.</span>
             </p>
           </div>
         </div>
