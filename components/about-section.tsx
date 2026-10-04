@@ -37,14 +37,15 @@ export function AboutSection() {
           </div>
 
           <div className="flex flex-col justify-start gap-2.5 lg:max-w-[566px] lg:justify-self-end text-[17px] leading-[1.45] text-muted-foreground md:text-lg">
-            <p className="text-pretty max-md:text-balance">
-              <span className="font-medium text-foreground">YEHSHA — means to rescue.</span> From the synthetic dyes, artificial sweeteners &amp; chemical
+            <p className="text-pretty">
+              <span className="font-medium text-foreground">YEHSHA — means to rescue.</span><br className="md:hidden" /> From the synthetic dyes, artificial sweeteners &amp; chemical
               fillers. And from the flat, foggy days that{' '}
               <span className="md:whitespace-nowrap">come with poor hydration.</span>
             </p>
-            <p className="text-pretty max-md:text-balance">
+            <p className="text-pretty">
               Crafted in small batches for people who read the label. Delivering{' '}
-              <span className="md:whitespace-nowrap">pure, uncompromised</span> recovery when you need it most.
+              <span className="md:whitespace-nowrap">pure, uncompromised</span> recovery when you{' '}
+              <span className="whitespace-nowrap">need it most.</span>
               <span className="mt-1.5 block font-medium text-foreground">Come to Life.</span>
             </p>
           </div>
