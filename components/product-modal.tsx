@@ -8,11 +8,13 @@ import type { Product } from '@/lib/products'
 import { useCart } from '@/components/cart-context'
 import { nextQuantity, useMinusStep } from '@/lib/quantity'
 
-// The modal photo is shown zoomed in, at the same 1.05 the product cards use on hover, but never so far
-// that the bottle is cropped. The photo is sized from the window it sits in: it zooms until the bottle
-// would come within EDGE_MARGIN of the top or bottom, and on short screens it shrinks below "cover"
-// so the whole bottle stays in view, with a blurred copy of the backdrop filling any gap at the sides.
+// The modal photo is shown zoomed in (more for the small shot bottles than for the electrolyte bottles),
+// but never so far that the bottle is cropped. The photo is sized from the window it sits in: it zooms
+// until the bottle would come within EDGE_MARGIN of the top or bottom, with the bottle kept centred, and
+// on short screens it shrinks below "cover" so the whole bottle stays in view, with a blurred copy of the
+// backdrop filling any gap at the sides.
 const MODAL_ZOOM = 1.05
+const SHOT_ZOOM = 1.3
 const EDGE_MARGIN = 0.04
 
 function ModalPhoto({ product }: { product: Product }) {
@@ -35,16 +37,29 @@ function ModalPhoto({ product }: { product: Product }) {
   const aspect = product.imageAspect
   const bottle = product.bottle
 
-  let layout: { w: number; h: number; letterboxed: boolean; mask?: CSSProperties } | null = null
+  let layout: { w: number; h: number; left: number; top: number; letterboxed: boolean; mask?: CSSProperties } | null = null
   if (size && size.w > 0 && size.h > 0 && aspect && bottle) {
-    const margin = EDGE_MARGIN * size.h
-    const coverHeight = Math.max(size.h, size.w / aspect)
-    const room = size.h / 2 - margin
-    const fitHeight = Math.min(room / (bottle.bottom - 0.5), room / (0.5 - bottle.top))
-    const height = Math.min(coverHeight * MODAL_ZOOM, fitHeight)
+    const { w: winW, h: winH } = size
+    const zoom = product.collection === 'shots' ? SHOT_ZOOM : MODAL_ZOOM
+    const margin = EDGE_MARGIN * winH
+    const coverHeight = Math.max(winH, winW / aspect)
+    const centre = (bottle.top + bottle.bottom) / 2
+    // Where the photo's top edge goes for a given photo height: the bottle's centre in the middle of the
+    // window, as far as the photo still covers the window (or simply centred if it can't).
+    const placeTop = (h: number) =>
+      h >= winH ? Math.min(0, Math.max(winH - h, winH / 2 - centre * h)) : (winH - h) / 2
+    let height = coverHeight * zoom
+    let top = placeTop(height)
+    for (let i = 0; i < 80; i++) {
+      top = placeTop(height)
+      const above = top + bottle.top * height
+      const below = winH - (top + bottle.bottom * height)
+      if (above >= margin && below >= margin) break
+      height *= 0.99
+    }
     const width = height * aspect
-    const gapSides = width < size.w - 0.5
-    const gapTopBottom = height < size.h - 0.5
+    const gapSides = width < winW - 0.5
+    const gapTopBottom = height < winH - 0.5
     // Feather any edge that doesn't reach the window edge, so the photo melts into the backdrop fill
     // instead of ending on a hard line.
     const fades: string[] = []
@@ -58,7 +73,7 @@ function ModalPhoto({ product }: { product: Product }) {
           WebkitMaskComposite: 'source-in',
         }
       : undefined
-    layout = { w: width, h: height, letterboxed: gapSides || gapTopBottom, mask }
+    layout = { w: width, h: height, left: (winW - width) / 2, top, letterboxed: gapSides || gapTopBottom, mask }
   }
 
   return (
@@ -81,8 +96,8 @@ function ModalPhoto({ product }: { product: Product }) {
             style={{
               width: layout.w,
               height: layout.h,
-              left: (size!.w - layout.w) / 2,
-              top: (size!.h - layout.h) / 2,
+              left: layout.left,
+              top: layout.top,
               ...layout.mask,
             }}
           >
