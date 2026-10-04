@@ -34,11 +34,11 @@ export function AboutSection() {
             </h2>
           </div>
 
-          <div className="flex flex-col justify-start gap-2.5 lg:max-w-[584px] lg:justify-self-end text-base leading-[1.45] text-muted-foreground md:text-lg">
+          <div className="flex flex-col justify-start gap-2.5 lg:max-w-[566px] lg:justify-self-end text-base leading-[1.45] text-muted-foreground md:text-lg">
             <p className="md:text-pretty">
-              <span className="font-medium text-foreground">YEHSHA — means to rescue.</span> From the synthetic dyes, the artificial sweeteners, the chemical
+              <span className="font-medium text-foreground">YEHSHA — means to rescue.</span> From the synthetic dyes, artificial sweeteners &amp; chemical
               fillers. And from the flat, foggy days that{' '}
-              <span className="whitespace-nowrap">come from poor hydration.</span>
+              <span className="whitespace-nowrap">come with poor hydration.</span>
             </p>
             <p className="md:text-pretty">
               Crafted in small batches for people who read the label. Delivering{' '}
