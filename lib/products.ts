@@ -43,7 +43,7 @@ export const products: Product[] = [
     description: 'Crisp mint with a clean electrolyte kick. 1000mg blend, zero sugar.',
     price: 21.99,
     packSize: 4,
-    image: '/products/electrolyte-moonlight-v7.jpg',
+    image: '/products/electrolyte-moonlight-v8.jpg',
     imageAspect: 2000 / 1868,
     bottle: { top: 0.096, bottom: 0.898 },
     // v7: backdrop-only darkening baked into the file (bottle untouched), so no imageBrightness filter
@@ -86,7 +86,7 @@ export const products: Product[] = [
     description: 'Ginger, turmeric & vitamin C. A daily defense in a 2oz pour.',
     price: 17.99,
     packSize: 4,
-    image: '/products/shot-stamina-recovery-v13.jpg',
+    image: '/products/shot-stamina-recovery-v14.jpg',
     imageAspect: 1967 / 2000,
     bottle: { top: 0.205, bottom: 0.717 },
     // brightness and overlay now match Defense+Digestion; the lift is baked into the v12 photo
