@@ -5,8 +5,10 @@ const facts: { value: ReactNode; label: string }[] = [
   { value: '0', label: 'Artificial ingredients' },
   {
     value: (
-      <span className="flex flex-col items-center sm:items-start">
-        <span className="mb-1 text-sm font-normal sm:text-base leading-none tracking-normal">Under</span>
+      <span className="flex flex-col items-center sm:relative sm:items-start">
+        <span className="mb-1 font-mono text-[11px] font-normal leading-normal tracking-[0.15em] uppercase whitespace-nowrap text-muted-foreground sm:absolute sm:bottom-full sm:left-0">
+          Less than
+        </span>
         <span className="leading-none">35</span>
       </span>
     ),
@@ -35,12 +37,12 @@ export function AboutSection() {
           </div>
 
           <div className="flex flex-col justify-start gap-2.5 lg:max-w-[566px] lg:justify-self-end text-[17px] leading-[1.45] text-muted-foreground md:text-lg">
-            <p className="text-pretty">
+            <p className="text-pretty max-md:text-balance">
               <span className="font-medium text-foreground">YEHSHA — means to rescue.</span> From the synthetic dyes, artificial sweeteners &amp; chemical
               fillers. And from the flat, foggy days that{' '}
               <span className="md:whitespace-nowrap">come with poor hydration.</span>
             </p>
-            <p className="text-pretty">
+            <p className="text-pretty max-md:text-balance">
               Crafted in small batches for people who read the label. Delivering{' '}
               <span className="md:whitespace-nowrap">pure, uncompromised</span> recovery when you need it most.
               <span className="mt-1.5 block font-medium text-foreground">Come to Life.</span>
