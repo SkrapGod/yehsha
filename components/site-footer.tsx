@@ -4,8 +4,14 @@ export function SiteFooter() {
       <div className="mx-auto max-w-[1400px] px-4 py-16 md:px-8">
         <div className="flex flex-col gap-10 md:flex-row md:justify-between">
           <div className="max-w-xs">
-            <p className="text-2xl font-bold tracking-[0.35em] uppercase">Yehsha</p>
-            <p className="mt-4 text-sm leading-relaxed text-background/60">
+            <img
+              src="/yehsha-wordmark.png"
+              alt="YEHSHA"
+              width={700}
+              height={148}
+              className="h-7 w-auto brightness-0 invert"
+            />
+            <p className="mt-5 text-sm leading-relaxed text-background/60">
               High-grade hydration, delivered fresh across the GTA, Tri-Cities & Guelph.
             </p>
           </div>

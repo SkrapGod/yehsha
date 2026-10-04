@@ -31,7 +31,7 @@ export function SiteHeader() {
           </button>
 
           <a href="#top" className="block" aria-label="YEHSHA home">
-            <img src="/yehsha-wordmark.png" alt="YEHSHA" width={700} height={148} className="h-6 w-auto" />
+            <img src="/yehsha-wordmark.png" alt="YEHSHA" width={700} height={148} className="h-7 w-auto" />
           </a>
         </div>
 
