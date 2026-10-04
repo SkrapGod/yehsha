@@ -18,30 +18,31 @@ export function AboutSection() {
   return (
     <section id="about" className="border-b border-t-2 border-border">
       <div className="mx-auto max-w-[1400px] px-4 py-24 md:px-8 md:py-32">
-        <div className="grid gap-12 lg:grid-cols-[auto_1fr] lg:gap-16">
+        <div className="grid gap-7 lg:grid-cols-[auto_1fr] lg:gap-16">
           <div>
             <p className="relative top-[2px] font-sans text-[12px] font-normal tracking-[calc(0.18em-1px)] uppercase text-muted-foreground md:text-[12.55px] md:tracking-[calc(0.3em-1px)]">
               The Purpose
             </p>
             <h2
-              className="mt-[5.1px] text-4xl md:mt-2 leading-[calc(1em+2px)] tracking-tight text-balance md:text-6xl lg:text-5xl"
+              className="mt-[5.1px] text-[calc((100vw-32px)/12.5)] md:mt-2 leading-[calc(1em+2px)] tracking-tight md:text-balance md:text-6xl lg:text-5xl"
               style={{
                 fontFamily: 'var(--font-google-sans-flex)',
                 fontVariationSettings: "'wght' 650, 'wdth' 105, 'GRAD' 40, 'ROND' 0, 'slnt' 0, 'opsz' 40",
               }}
             >
-              Stop Overthinking Health.<br className="hidden lg:block" /> Fix Your Hydration.
+              Stop Overthinking Health.<br className="hidden lg:inline" /> Fix Your Hydration.
             </h2>
           </div>
 
-          <div className="flex flex-col justify-start gap-2.5 text-base leading-[1.45] text-muted-foreground md:text-lg">
-            <p className="text-pretty">
+          <div className="flex flex-col justify-start gap-2.5 lg:max-w-[584px] lg:justify-self-end text-base leading-[1.45] text-muted-foreground md:text-lg">
+            <p className="md:text-pretty">
               <span className="font-medium text-foreground">YEHSHA — means to rescue.</span> From the synthetic dyes, the artificial sweeteners, the chemical
-              fillers. And from the flat, foggy days that come from poor hydration.
+              fillers. And from the flat, foggy days that{' '}
+              <span className="whitespace-nowrap">come from poor hydration.</span>
             </p>
-            <p className="text-pretty">
-              Crafted in small batches for people who read the label. Delivering pure, uncompromised
-              recovery when you need it most.
+            <p className="md:text-pretty">
+              Crafted in small batches for people who read the label. Delivering{' '}
+              <span className="whitespace-nowrap">pure, uncompromised</span> recovery when you need it most.
               <span className="mt-1.5 block font-medium text-foreground">Come to Life.</span>
             </p>
           </div>
