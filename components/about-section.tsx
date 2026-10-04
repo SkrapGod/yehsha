@@ -5,8 +5,8 @@ const facts: { value: ReactNode; label: string }[] = [
   { value: '0', label: 'Artificial ingredients' },
   {
     value: (
-      <span className="flex flex-col">
-        <span className="mb-1 text-base font-normal leading-none tracking-normal">Under</span>
+      <span className="flex flex-col items-center sm:items-start">
+        <span className="mb-1 text-sm font-normal sm:text-base leading-none tracking-normal">Under</span>
         <span className="leading-none">35</span>
       </span>
     ),
@@ -35,12 +35,12 @@ export function AboutSection() {
           </div>
 
           <div className="flex flex-col justify-start gap-2.5 lg:max-w-[566px] lg:justify-self-end text-[17px] leading-[1.45] text-muted-foreground md:text-lg">
-            <p className="md:text-pretty">
+            <p className="text-pretty">
               <span className="font-medium text-foreground">YEHSHA — means to rescue.</span> From the synthetic dyes, artificial sweeteners &amp; chemical
               fillers. And from the flat, foggy days that{' '}
-              <span className="whitespace-nowrap">come with poor hydration.</span>
+              <span className="md:whitespace-nowrap">come with poor hydration.</span>
             </p>
-            <p className="md:text-pretty">
+            <p className="text-pretty">
               Crafted in small batches for people who read the label. Delivering{' '}
               <span className="md:whitespace-nowrap">pure, uncompromised</span> recovery when you need it most.
               <span className="mt-1.5 block font-medium text-foreground">Come to Life.</span>
@@ -52,11 +52,11 @@ export function AboutSection() {
           {facts.map((fact, i) => (
             <div
               key={fact.label}
-              className={`flex flex-col gap-2 p-8 ${
+              className={`flex flex-col items-center gap-2 p-5 text-center sm:items-start sm:p-8 sm:text-left ${
                 i < facts.length - 1 ? 'border-b border-border sm:border-b-0 sm:border-r' : ''
               }`}
             >
-              <span className="text-5xl font-bold tracking-tight">{fact.value}</span>
+              <span className="text-3xl font-bold tracking-tight sm:text-5xl">{fact.value}</span>
               <span className="font-mono text-[11px] tracking-[0.15em] uppercase text-muted-foreground">
                 {fact.label}
               </span>
