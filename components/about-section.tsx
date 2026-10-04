@@ -18,13 +18,13 @@ export function AboutSection() {
   return (
     <section id="about" className="border-b border-t-2 border-border">
       <div className="mx-auto max-w-[1400px] px-4 py-24 md:px-8 md:py-32">
-        <div className="grid gap-7 lg:grid-cols-[auto_1fr] lg:gap-16">
+        <div className="grid gap-4 md:gap-7 lg:grid-cols-[auto_1fr] lg:gap-16">
           <div>
             <p className="relative top-[2px] font-sans text-[12px] font-normal tracking-[calc(0.18em-1px)] uppercase text-muted-foreground md:text-[12.55px] md:tracking-[calc(0.3em-1px)]">
               The Purpose
             </p>
             <h2
-              className="mt-[5.1px] text-[calc((100vw-32px)/12.5)] md:mt-2 leading-[calc(1em+2px)] tracking-tight md:text-balance md:text-6xl lg:text-5xl"
+              className="mt-[5.1px] text-4xl md:mt-2 md:leading-[calc(1em+2px)] tracking-tight md:text-balance md:text-6xl lg:text-5xl"
               style={{
                 fontFamily: 'var(--font-google-sans-flex)',
                 fontVariationSettings: "'wght' 650, 'wdth' 105, 'GRAD' 40, 'ROND' 0, 'slnt' 0, 'opsz' 40",
