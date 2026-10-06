@@ -93,7 +93,7 @@ export const products: Product[] = [
     flavor: 'STAMINA+\nRECOVERY',
     description: 'Beat the Slump in One Shot. Bright, earthy and cool.',
     extendedDescription:
-      'Bright, earthy and cool, with a fresh finish that wakes you up. A 60 mL shot for the days that need a lift out of the fog and a little help getting back up to speed.',
+      'Bright, earthy and cool, with a fresh finish that wakes you up. A 60 mL shot for the long days and hard efforts, and a little help bouncing back.',
     price: 17.99,
     packSize: 4,
     image: '/products/shot-stamina-recovery-v14.jpg',
